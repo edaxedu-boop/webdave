@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  html, body, #root {
+    background-color: #0C0C0C;
+    font-family: 'Kanit', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.hero-heading {
+  background: linear-gradient(180deg, #FFFFFF 0%, #D7E2EA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.8));
+}
+
+.contact-btn {
+  background: linear-gradient(
+    135deg,
+    #c0392b 0%,
+    #e74c3c 20%,
+    #e67e22 40%,
+    #8e44ad 70%,
+    #6c3483 100%
+  );
+}
