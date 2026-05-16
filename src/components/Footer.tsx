@@ -13,9 +13,9 @@ const socialLinks = [
 
 const navLinks = [
   { name: 'Inicio', href: '#inicio' },
+  { name: 'Nuestro Equipo', href: '#sobre-nosotros' },
   { name: 'Servicios', href: '#servicios' },
-  { name: 'Clientes', href: '#clientes' },
-  { name: 'Nuestro Equipo', href: '#nuestro-equipo' },
+  { name: 'Proyectos', href: '#proyectos' },
   { name: 'Contacto', href: '#contacto' },
 ];
 
@@ -23,7 +23,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contacto" className="w-full bg-[#0C0C0C] px-5 sm:px-8 md:px-10 pt-80 pb-10 border-t border-white/5">
+    <footer className="w-full bg-[#0C0C0C] px-5 sm:px-8 md:px-10 pt-80 pb-10 border-t border-white/5">
       <div className="max-w-[1760px] mx-auto flex flex-col gap-20">
         
         {/* Top Section: CTA */}
@@ -31,7 +31,7 @@ export default function Footer() {
           <FadeIn delay={0} y={40}>
             <h2 
               className="font-black uppercase leading-[0.9] tracking-tighter"
-              style={{ fontSize: 'clamp(2.5rem, 12vw, 12rem)', color: '#D7E2EA' }}
+              style={{ fontSize: 'clamp(2.5rem, 9vw, 8rem)', color: '#D7E2EA' }}
             >
               Construyamos <br /> <span className="hero-heading">juntos</span>
             </h2>
@@ -39,10 +39,10 @@ export default function Footer() {
 
           <FadeIn delay={0.2} y={20}>
             <a 
-              href="mailto:hello@jackcreator.com"
+              href="https://wa.me/595985478760?text=Hola!%20Encontr%C3%A9%20su%20contacto%20en%20el%20pie%20de%20p%C3%A1gina%20del%20sitio%20web."
               className="group flex items-center gap-3 text-white text-lg sm:text-xl md:text-2xl font-light hover:opacity-70 transition-opacity"
             >
-              hello@jackcreator.com
+              +595 985 478 760
               <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                 <ArrowUpRight className="w-5 h-5" />
               </div>
@@ -59,10 +59,10 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
                 <Cpu className="w-5 h-5 text-white" />
               </div>
-              <span className="text-white font-bold uppercase tracking-widest">Jack Creator</span>
+              <span className="text-white font-bold uppercase tracking-widest">jka-mundodigital-py</span>
             </div>
             <p className="text-[#D7E2EA]/50 text-sm max-w-xs leading-relaxed">
-              Creador 3D y diseñador digital enfocado en crear experiencias visuales impactantes e inolvidables.
+              Agencia de marketing digital enfocada en crear impacto real y resultados extraordinarios para tu negocio.
             </p>
           </div>
 
@@ -103,7 +103,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-10 border-t border-white/5">
           <span className="text-[#D7E2EA]/30 text-xs uppercase tracking-widest">
-            © {currentYear} JACK CREATOR. Todos los derechos reservados.
+            © {currentYear} jka-mundodigital-py. Todos los derechos reservados.
           </span>
           <div className="flex items-center gap-2 text-[#D7E2EA]/30 text-xs uppercase tracking-widest">
             <span>Hecho con</span>

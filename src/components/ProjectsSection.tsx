@@ -6,8 +6,8 @@ import FadeIn from './FadeIn';
 const projects = [
   {
     number: '01',
-    category: 'Cliente',
-    name: 'PROYECTO JKA 1',
+    category: 'Diseño Gráfico y Publicidad Digital en META',
+    name: 'Cariña Cañete',
     href: '#',
     images: {
       col1: [
@@ -19,8 +19,8 @@ const projects = [
   },
   {
     number: '02',
-    category: 'Personal',
-    name: 'PROYECTO JKA 2',
+    category: 'Diseño Gráfico y Edición de Video',
+    name: 'Juan Ramon Benegas',
     href: '#',
     images: {
       col1: [
@@ -32,8 +32,21 @@ const projects = [
   },
   {
     number: '03',
-    category: 'Cliente',
-    name: 'PROYECTO JKA 3',
+    category: 'Social Media, Diseño y Video',
+    name: 'La Misión Restaurant',
+    href: '#',
+    images: {
+      col1: [
+        'https://i.imgur.com/Jw1TmiM.png',
+        'https://i.imgur.com/Jw1TmiM.png',
+      ],
+      col2: 'https://i.imgur.com/Jw1TmiM.png',
+    },
+  },
+  {
+    number: '04',
+    category: 'Rediseño de Logotipo 3D',
+    name: 'LNFS del Paraguay',
     href: '#',
     images: {
       col1: [
@@ -54,7 +67,7 @@ export default function ProjectsSection() {
 
   return (
     <section
-      id="nuestro-equipo"
+      id="proyectos"
       ref={containerRef}
       className="relative px-5 sm:px-8 md:px-10 rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10"
       style={{ backgroundColor: '#0C0C0C' }}

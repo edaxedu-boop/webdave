@@ -17,7 +17,7 @@ export default function AnimatedText({
   const containerRef = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: scrollOffset as [string, string],
+    offset: scrollOffset as any,
   });
 
   const totalChars = text.length;

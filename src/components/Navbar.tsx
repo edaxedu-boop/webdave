@@ -1,22 +1,28 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Cpu, Menu, X, ChevronDown } from 'lucide-react';
+import { Cpu, Menu, X, ChevronDown, Megaphone, Heart, Smartphone, ShoppingCart, Globe, Share2, Target, Video, Palette, Box, Bot, Camera } from 'lucide-react';
 
-const navLinks = ['Inicio', 'Servicios', 'Clientes', 'Nuestro Equipo', 'Contacto'];
+const navLinks = [
+  { name: 'Inicio', id: 'inicio' },
+  { name: 'Nuestro Equipo', id: 'sobre-nosotros' },
+  { name: 'Servicios', id: 'servicios' },
+  { name: 'Proyectos', id: 'proyectos' },
+  { name: 'Contacto', id: 'contacto' },
+];
 
 const servicesList = [
-  'Flyers Publicitarios',
-  'Software de Lealtad',
-  'Desarrollo de Apps Móviles',
-  'Desarrollo de Tienda en Línea',
-  'Desarrollo Web',
-  'Gestión de Redes Sociales',
-  'Publicidad Digital en Meta',
-  'Edición de Video con IA',
-  'Diseño Gráfico',
-  'Diseño de Logotipos 3D',
-  'Automatización con Agentes IA',
-  'Producción Audiovisual Corporativa',
+  { name: 'Flyers Publicitarios', icon: Megaphone },
+  { name: 'Software de Lealtad', icon: Heart },
+  { name: 'Desarrollo de Apps Móviles', icon: Smartphone },
+  { name: 'Desarrollo de Tienda en Línea', icon: ShoppingCart },
+  { name: 'Desarrollo Web', icon: Globe },
+  { name: 'Gestión de Redes Sociales', icon: Share2 },
+  { name: 'Publicidad Digital en Meta', icon: Target },
+  { name: 'Edición de Video con IA', icon: Video },
+  { name: 'Diseño Gráfico', icon: Palette },
+  { name: 'Diseño de Logotipos 3D', icon: Box },
+  { name: 'Automatización con Agentes IA', icon: Bot },
+  { name: 'Producción Audiovisual Corporativa', icon: Camera },
 ];
 
 interface NavbarProps {
@@ -81,7 +87,7 @@ export default function Navbar({ onServiceSelect }: NavbarProps) {
       initial={{ y: -100, x: '-50%', opacity: 0 }}
       animate={{ y: 0, x: '-50%', opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-      className="fixed top-5 sm:top-8 left-1/2 z-[999] px-4 w-fit pointer-events-none"
+      className="fixed top-5 sm:top-8 left-1/2 z-[999] px-4 w-[95%] sm:w-fit pointer-events-none"
     >
       <div className="flex flex-col items-center gap-2">
         <motion.nav 
@@ -95,20 +101,25 @@ export default function Navbar({ onServiceSelect }: NavbarProps) {
           {/* Desktop Links */}
           <div className="hidden sm:flex items-center gap-1">
             {navLinks.map((link) => {
-              const id = link.toLowerCase().replace(' ', '-');
+              const id = link.id;
               const isActive = activeSection === id;
               const isServicios = id === 'servicios';
 
               return (
-                <div key={link} className="relative group">
+                <div key={link.name} className="relative group">
                   <a
-                    href={isServicios ? undefined : `#${id}`}
-                    onClick={() => handleLinkClick(id)}
+                    href={`#${id}`}
+                    onClick={() => {
+                      if (isServicios) {
+                        setIsDropdownOpen(!isDropdownOpen);
+                      }
+                      handleLinkClick(id);
+                    }}
                     onMouseEnter={() => isServicios && setIsDropdownOpen(true)}
                     className="relative px-4 py-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 outline-none flex items-center gap-1 cursor-pointer"
                     style={{ color: isActive ? 'white' : 'rgba(255, 255, 255, 0.5)' }}
                   >
-                    <span className="relative z-10">{link}</span>
+                    <span className="relative z-10">{link.name}</span>
                     {isServicios && <ChevronDown className={`w-3 h-3 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />}
                     {isActive && !isServicios && (
                       <motion.div
@@ -133,11 +144,12 @@ export default function Navbar({ onServiceSelect }: NavbarProps) {
                           <div className="grid grid-cols-1 gap-1">
                             {servicesList.map((service) => (
                               <button
-                                key={service}
-                                onClick={() => handleServiceClick(service)}
-                                className="w-full text-left px-4 py-2.5 rounded-xl text-[10px] text-white/60 hover:text-white hover:bg-white/5 transition-all uppercase tracking-widest font-bold border border-transparent hover:border-white/10"
+                                key={service.name}
+                                onClick={() => handleServiceClick(service.name)}
+                                className="w-full text-left px-4 py-2.5 rounded-xl text-[10px] text-white/60 hover:text-white hover:bg-white/5 transition-all uppercase tracking-widest font-bold border border-transparent hover:border-white/10 flex items-center gap-3"
                               >
-                                {service}
+                                <service.icon className="w-3.5 h-3.5 text-white drop-shadow-[0_2px_4px_rgba(255,255,255,0.3)]" />
+                                {service.name}
                               </button>
                             ))}
                           </div>
@@ -181,16 +193,16 @@ export default function Navbar({ onServiceSelect }: NavbarProps) {
                     className="flex flex-col gap-2"
                   >
                     {navLinks.map((link) => {
-                      const id = link.toLowerCase().replace(' ', '-');
+                      const id = link.id;
                       const isServicios = id === 'servicios';
                       
                       return (
                         <button
-                          key={link}
+                          key={link.name}
                           onClick={() => isServicios ? setIsDropdownOpen(true) : handleLinkClick(id)}
                           className="w-full text-center py-4 text-xs font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors flex items-center justify-center gap-2"
                         >
-                          {link}
+                          {link.name}
                           {isServicios && <ChevronDown className="w-4 h-4 -rotate-90 opacity-50" />}
                         </button>
                       );
@@ -214,11 +226,14 @@ export default function Navbar({ onServiceSelect }: NavbarProps) {
                     <div className="grid grid-cols-1 gap-1 max-h-[50vh] overflow-y-auto custom-scrollbar">
                       {servicesList.map((service) => (
                         <button
-                          key={service}
-                          onClick={() => handleServiceClick(service)}
-                          className="w-full text-center px-4 py-3 rounded-xl text-[10px] text-white/50 hover:text-white hover:bg-white/5 transition-all uppercase tracking-widest font-bold border border-transparent hover:border-white/10"
+                          key={service.name}
+                          onClick={() => handleServiceClick(service.name)}
+                          className="w-full text-left px-5 py-4 rounded-xl text-[11px] text-white/50 hover:text-white hover:bg-white/5 transition-all uppercase tracking-widest font-bold border border-transparent hover:border-white/10 flex items-center gap-4"
                         >
-                          {service}
+                          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 border border-white/10 shadow-[0_4px_12px_rgba(255,255,255,0.1)]">
+                            <service.icon className="w-4 h-4 text-white drop-shadow-[0_2px_3px_rgba(255,255,255,0.5)]" />
+                          </div>
+                          {service.name}
                         </button>
                       ))}
                     </div>
