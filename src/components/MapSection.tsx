@@ -3,7 +3,7 @@ import { MapPin, Navigation, Globe } from 'lucide-react';
 
 export default function MapSection() {
   return (
-    <section className="relative mt-40 sm:mt-60 pt-32 pb-32 bg-[#0C0C0C] overflow-hidden">
+    <section className="relative mt-40 sm:mt-60 pt-32 pb-10 sm:pb-32 bg-[#0C0C0C] overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       

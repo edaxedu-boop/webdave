@@ -68,7 +68,7 @@ export default function ProjectsSection({ onProjectSelect }: ProjectsSectionProp
     <section
       id="proyectos"
       ref={containerRef}
-      className="relative px-5 sm:px-8 md:px-10 rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] z-10 pb-[100vh]"
+      className="relative px-5 sm:px-8 md:px-10 rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] z-10 pb-32 sm:pb-48 md:pb-[100vh]"
       style={{ backgroundColor: '#0C0C0C' }}
     >
       <div className="flex flex-col items-center py-20 sm:py-24 md:py-32">

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowUpRight, ChevronLeft, ChevronRight, 
   Megaphone, Heart, Smartphone, ShoppingBag, 
@@ -100,61 +100,13 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ onServiceSelect }: ServicesSectionProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const checkScroll = () => {
-    if (containerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-      setCanScrollLeft(scrollLeft > 20);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 20);
-    }
-  };
-
-  useEffect(() => {
-    checkScroll();
-    window.addEventListener('resize', checkScroll);
-    return () => window.removeEventListener('resize', checkScroll);
-  }, []);
-
-  // Auto-scroll logic
-  useEffect(() => {
-    let interval: number;
-    if (!isPaused) {
-      interval = window.setInterval(() => {
-        if (containerRef.current) {
-          const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-          if (scrollLeft >= scrollWidth - clientWidth - 5) {
-            containerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-          } else {
-            const cardWidth = window.innerWidth < 640 ? 280 : window.innerWidth < 768 ? 320 : 350;
-            const gap = 24;
-            containerRef.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
-          }
-        }
-      }, 3500);
-    }
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (containerRef.current) {
-      const cardWidth = window.innerWidth < 640 ? 280 : window.innerWidth < 768 ? 320 : 350;
-      const gap = 24;
-      const scrollAmount = cardWidth + gap;
-      containerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const [showAll, setShowAll] = useState(false);
+  const displayedServices = showAll ? services : services.slice(0, 4);
 
   return (
     <section
       id="servicios"
-      className="flex flex-col py-20 sm:py-24 md:py-32 bg-[#0C0C0C] overflow-hidden"
+      className="flex flex-col py-20 sm:py-24 md:py-32 bg-[#0C0C0C]"
     >
       <div className="px-5 sm:px-8 md:px-10 mb-16 flex flex-col items-center text-center gap-8">
         <FadeIn delay={0} y={40}>
@@ -165,102 +117,94 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
             <span className="text-blue-600">+</span> Servicios
           </h2>
         </FadeIn>
-
-        {/* Carousel Controls */}
-        <div className="flex items-center gap-3">
-           <button
-             onClick={() => scroll('left')}
-             disabled={!canScrollLeft}
-             className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all opacity-100 hover:bg-white group"
-           >
-             <ChevronLeft className={`w-5 h-5 ${canScrollLeft ? 'text-white group-hover:text-black' : 'text-white/20'}`} />
-           </button>
-           <button
-             onClick={() => scroll('right')}
-             disabled={!canScrollRight}
-             className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all opacity-100 hover:bg-white group"
-           >
-             <ChevronRight className={`w-5 h-5 ${canScrollRight ? 'text-white group-hover:text-black' : 'text-white/20'}`} />
-           </button>
-        </div>
       </div>
 
-      {/* Draggable Container */}
-      <div 
-        ref={containerRef}
-        onScroll={checkScroll}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        className="flex gap-6 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory scroll-smooth carousel-container"
-      >
-        {services.map((service, i) => (
-          <motion.div
-            key={service.number}
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.6 }}
-            className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[350px] group snap-center"
-          >
-            <div className="flex flex-col gap-6 p-6 sm:p-8 rounded-[32px] border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-all duration-700 h-[520px] justify-between relative overflow-hidden">
-               {/* 3D Icon Background Decor */}
-               <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-600/10 rounded-full blur-[40px] group-hover:bg-blue-600/20 transition-all duration-700" />
-               
-               <div className="flex flex-col gap-5">
-                 {/* Image Container */}
-                 <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-2">
-                    <img 
-                      src={service.image} 
-                      alt={service.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C] via-transparent to-transparent opacity-60" />
-                 </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-5 sm:px-8 md:px-10 max-w-[1600px] mx-auto">
+        <AnimatePresence mode="popLayout">
+          {displayedServices.map((service, i) => (
+            <motion.div
+              key={service.number}
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 30 }}
+              transition={{ delay: i * 0.05, duration: 0.5, ease: "easeOut" }}
+              layout
+              className="w-full group"
+            >
+              <div className="flex flex-col gap-6 p-6 sm:p-8 rounded-[32px] border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-all duration-700 h-[500px] justify-between relative overflow-hidden">
+                 {/* ... content ... */}
+                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-600/10 rounded-full blur-[40px] group-hover:bg-blue-600/20 transition-all duration-700" />
+                 
+                 <div className="flex flex-col gap-5">
+                   <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-2">
+                      <img 
+                        src={service.image} 
+                        alt={service.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C] via-transparent to-transparent opacity-60" />
+                   </div>
 
-                 <div className="flex items-center justify-between">
-                    <span
-                      className="font-black leading-none text-white/10 transition-colors group-hover:text-white/20"
-                      style={{ fontSize: 'clamp(2rem, 4vw, 50px)' }}
-                    >
-                      {service.number}
-                    </span>
-                    
-                    {/* 3D Textured Icon */}
-                    <motion.div 
-                       whileHover={{ rotateY: 20, rotateX: -10 }}
-                       className="relative w-12 h-12 flex items-center justify-center group/icon"
-                    >
-                       <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 rounded-xl blur-[1px] border border-white/20 shadow-[5px_5px_15px_rgba(0,0,0,0.3)]" />
-                       <div className="absolute inset-0 bg-[#0C0C0C]/40 rounded-xl" />
-                       <service.icon className="w-5 h-5 text-white relative z-10 drop-shadow-[2px_4px_6px_rgba(0,0,0,0.5)]" />
-                    </motion.div>
-                 </div>
+                   <div className="flex items-center justify-between">
+                      <span
+                        className="font-black leading-none text-white/10 transition-colors group-hover:text-white/20"
+                        style={{ fontSize: 'clamp(2rem, 4vw, 50px)' }}
+                      >
+                        {service.number}
+                      </span>
+                      
+                      <motion.div 
+                         whileHover={{ rotateY: 20, rotateX: -10 }}
+                         className="relative w-12 h-12 flex items-center justify-center group/icon"
+                      >
+                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 rounded-xl blur-[1px] border border-white/20 shadow-[5px_5px_15px_rgba(0,0,0,0.3)]" />
+                         <div className="absolute inset-0 bg-[#0C0C0C]/40 rounded-xl" />
+                         <service.icon className="w-5 h-5 text-white relative z-10 drop-shadow-[2px_4px_6px_rgba(0,0,0,0.5)]" />
+                      </motion.div>
+                   </div>
 
-                 <div className="flex flex-col gap-2">
-                    <h3
-                      className="font-black uppercase tracking-tight leading-tight group-hover:text-blue-500 transition-colors duration-500"
-                      style={{ fontSize: '1.1rem', color: '#FFFFFF' }}
-                    >
-                      {service.name}
-                    </h3>
-                    <p
-                      className="font-light leading-relaxed text-[#D7E2EA]/50 text-xs line-clamp-3"
-                    >
-                      {service.description}
-                    </p>
+                   <div className="flex flex-col gap-2">
+                      <h3
+                        className="font-black uppercase tracking-tight leading-tight group-hover:text-blue-500 transition-colors duration-500"
+                        style={{ fontSize: '1.1rem', color: '#FFFFFF' }}
+                      >
+                        {service.name}
+                      </h3>
+                      <p
+                        className="font-light leading-relaxed text-[#D7E2EA]/50 text-[10px] line-clamp-3"
+                      >
+                        {service.description}
+                      </p>
+                   </div>
                  </div>
-               </div>
-                
-                <button
-                  onClick={() => onServiceSelect(service.name)}
-                  className="mt-4 flex items-center justify-between gap-2 w-full px-6 py-4 rounded-full bg-white text-black text-[9px] font-black uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all duration-500 group/btn"
-                >
-                  Ver Servicio
-                  <ArrowUpRight className="w-3 h-3 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                </button>
-            </div>
-          </motion.div>
-        ))}
+                  
+                  <button
+                    onClick={() => onServiceSelect(service.name)}
+                    className="mt-4 flex items-center justify-between gap-2 w-full px-6 py-4 rounded-full bg-white text-black text-[9px] font-black uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all duration-500 group/btn"
+                  >
+                    Ver Servicio
+                    <ArrowUpRight className="w-3 h-3 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                  </button>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Show All Toggle */}
+      <div className="mt-20 flex justify-center">
+         <button
+           onClick={() => setShowAll(!showAll)}
+           className="group relative flex items-center gap-4 px-10 py-5 rounded-full border border-white/10 hover:border-blue-600 transition-all overflow-hidden"
+         >
+           <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+           <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[10px]">
+             {showAll ? 'Ver Menos' : 'Ver Todos los Servicios'}
+           </span>
+           <div className={`relative z-10 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-transform duration-500 ${showAll ? 'rotate-180' : ''}`}>
+              <ChevronRight className="w-4 h-4 text-white rotate-90" />
+           </div>
+         </button>
       </div>
     </section>
   );
