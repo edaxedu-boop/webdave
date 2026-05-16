@@ -9,7 +9,6 @@ import ComboSection from './components/ComboSection';
 import MapSection from './components/MapSection';
 import Footer from './components/Footer';
 import ContactSection from './components/ContactSection';
-import WhatsAppButton from './components/WhatsAppButton';
 import ComingSoon from './components/ComingSoon';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import FlyersPage from './components/services/FlyersPage';
@@ -40,7 +39,6 @@ export default function App() {
       <ContactSection />
       <MapSection />
       <Footer />
-      <WhatsAppButton />
 
       <AnimatePresence>
         {selectedProject && (
