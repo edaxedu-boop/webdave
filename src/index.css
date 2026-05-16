@@ -45,3 +45,25 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.carousel-container {
+  /* Mobile: 280px card */
+  padding-left: calc(50% - 140px);
+  padding-right: calc(50% - 140px);
+}
+
+@media (min-width: 640px) {
+  .carousel-container {
+    /* Tablet: 320px card */
+    padding-left: calc(50% - 160px);
+    padding-right: calc(50% - 160px);
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-container {
+    /* Desktop: 350px card */
+    padding-left: calc(50% - 175px);
+    padding-right: calc(50% - 175px);
+  }
+}

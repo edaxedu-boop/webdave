@@ -320,7 +320,7 @@ export default function VideoEditingPage({ onClose }: VideoEditingPageProps) {
               <Phone className="w-4 h-4" />
               WhatsApp: +595 985 478760
             </a>
-            <div className="text-white/30 font-bold uppercase tracking-widest text-[10px]">
+            <div className="text-white/30 font-bold uppercase tracking-widest text-[11px] sm:text-xs">
               & +595 983 338326
             </div>
           </div>

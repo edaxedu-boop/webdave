@@ -129,7 +129,9 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
           if (scrollLeft >= scrollWidth - clientWidth - 5) {
             containerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
           } else {
-            containerRef.current.scrollBy({ left: 350, behavior: 'smooth' });
+            const cardWidth = window.innerWidth < 640 ? 280 : window.innerWidth < 768 ? 320 : 350;
+            const gap = 24;
+            containerRef.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
           }
         }
       }, 3500);
@@ -139,7 +141,9 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
 
   const scroll = (direction: 'left' | 'right') => {
     if (containerRef.current) {
-      const scrollAmount = 400;
+      const cardWidth = window.innerWidth < 640 ? 280 : window.innerWidth < 768 ? 320 : 350;
+      const gap = 24;
+      const scrollAmount = cardWidth + gap;
       containerRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -187,8 +191,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
         onScroll={checkScroll}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="flex gap-6 overflow-x-auto no-scrollbar px-5 sm:px-8 md:px-10 cursor-grab active:cursor-grabbing pb-12"
-        style={{ scrollSnapType: 'x proximity' }}
+        className="flex gap-6 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory scroll-smooth carousel-container"
       >
         {services.map((service, i) => (
           <motion.div
@@ -197,8 +200,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05, duration: 0.6 }}
-            className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[350px] group"
-            style={{ scrollSnapAlign: 'start' }}
+            className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[350px] group snap-center"
           >
             <div className="flex flex-col gap-6 p-6 sm:p-8 rounded-[32px] border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-all duration-700 h-[520px] justify-between relative overflow-hidden">
                {/* 3D Icon Background Decor */}

@@ -86,7 +86,7 @@ export default function ComboSection() {
                    <p className="text-white/30 text-xs font-black uppercase tracking-[0.3em]">Precio Mensual</p>
                    <div className="flex flex-col items-center">
                       <div className="flex items-baseline gap-2">
-                         <span className="text-white font-black text-7xl sm:text-8xl tracking-tighter">1.000.000</span>
+                         <span className="text-white font-black text-5xl sm:text-7xl md:text-8xl tracking-tighter">1.000.000</span>
                          <span className="text-white/40 text-2xl font-bold uppercase">Gs</span>
                       </div>
                       <div className="relative mt-2">
@@ -112,7 +112,7 @@ export default function ComboSection() {
                         href="https://wa.me/595985478760"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 py-4 rounded-xl border border-white/10 bg-white/5 text-white/50 text-[10px] font-black uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all"
+                        className="flex items-center justify-center gap-2 py-4 rounded-xl border border-white/10 bg-white/5 text-white/50 text-[12px] sm:text-xs font-black uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all"
                      >
                         <MessageSquare className="w-3 h-3" /> +595 985 478 760
                      </a>

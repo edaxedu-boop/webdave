@@ -10,6 +10,7 @@ import MapSection from './components/MapSection';
 import Footer from './components/Footer';
 import ContactSection from './components/ContactSection';
 import ComingSoon from './components/ComingSoon';
+import ProjectDetailPage from './components/ProjectDetailPage';
 import FlyersPage from './components/services/FlyersPage';
 import Logo3DPage from './components/services/Logo3DPage';
 import GraphicDesignPage from './components/services/GraphicDesignPage';
@@ -25,6 +26,7 @@ import CorporateVideoPage from './components/services/CorporateVideoPage';
 
 export default function App() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<any | null>(null);
 
   return (
     <main style={{ backgroundColor: '#0C0C0C', overflowX: 'clip' }}>
@@ -33,12 +35,19 @@ export default function App() {
       <AboutSection />
       <ComboSection />
       <ServicesSection onServiceSelect={setSelectedService} />
-      <ProjectsSection />
-      <MapSection />
+      <ProjectsSection onProjectSelect={setSelectedProject} />
       <ContactSection />
+      <MapSection />
       <Footer />
 
       <AnimatePresence>
+        {selectedProject && (
+          <ProjectDetailPage
+            key="project-detail"
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
         {selectedService === 'Flyers Publicitarios' && (
           <FlyersPage
             key="flyers"
