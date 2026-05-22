@@ -254,7 +254,7 @@ export default function MetaAdsPage({ onClose }: MetaAdsPageProps) {
         </div>
 
         <a
-          href="https://wa.me/595985478760"
+          href="https://wa.me/595994884319"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 contact-btn text-white font-black uppercase tracking-widest text-sm px-12 py-5 rounded-full shadow-2xl shadow-blue-500/20 hover:scale-105 transition-all"
@@ -288,17 +288,14 @@ export default function MetaAdsPage({ onClose }: MetaAdsPageProps) {
 
            <div className="flex flex-col sm:flex-row items-center gap-4">
             <a
-              href="https://wa.me/595985478760"
+              href="https://wa.me/595994884319"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-600 flex items-center gap-3 text-white font-black uppercase tracking-widest text-sm px-10 py-5 rounded-full shadow-xl shadow-blue-600/20 hover:bg-blue-700 transition-all"
             >
               <Phone className="w-4 h-4" />
-              WhatsApp: +595 985 478760
+              WhatsApp: +595 994 884 319
             </a>
-            <div className="text-white/30 font-bold uppercase tracking-widest text-[11px] sm:text-xs">
-              & +595 983 338326
-            </div>
           </div>
 
           <button

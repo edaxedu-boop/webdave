@@ -23,14 +23,16 @@ import MobileAppsPage from './components/services/MobileAppsPage';
 import LoyaltySoftwarePage from './components/services/LoyaltySoftwarePage';
 import AIAgentPage from './components/services/AIAgentPage';
 import CorporateVideoPage from './components/services/CorporateVideoPage';
+import SocialWorksPage from './components/SocialWorksPage';
 
 export default function App() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
+  const [showSocialWorks, setShowSocialWorks] = useState(false);
 
   return (
     <main style={{ backgroundColor: '#0C0C0C', overflowX: 'clip' }}>
-      <Navbar onServiceSelect={setSelectedService} />
+      <Navbar onServiceSelect={setSelectedService} onSocialWorksSelect={() => setShowSocialWorks(true)} />
       <HeroSection />
       <AboutSection />
       <ComboSection />
@@ -41,6 +43,12 @@ export default function App() {
       <Footer />
 
       <AnimatePresence>
+        {showSocialWorks && (
+          <SocialWorksPage
+            key="social-works"
+            onClose={() => setShowSocialWorks(false)}
+          />
+        )}
         {selectedProject && (
           <ProjectDetailPage
             key="project-detail"

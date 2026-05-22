@@ -263,7 +263,7 @@ export default function MobileAppsPage({ onClose }: MobileAppsPageProps) {
                 </div>
 
                 <a
-                  href="https://wa.me/595985478760"
+                  href="https://wa.me/595994884319"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`mt-10 block text-center py-5 rounded-2xl font-black uppercase tracking-widest text-xs transition-all ${
@@ -327,17 +327,14 @@ export default function MobileAppsPage({ onClose }: MobileAppsPageProps) {
 
            <div className="flex flex-col sm:flex-row items-center gap-4">
             <a
-              href="https://wa.me/595985478760"
+              href="https://wa.me/595994884319"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-600 flex items-center gap-3 text-white font-black uppercase tracking-widest text-sm px-10 py-5 rounded-full shadow-xl shadow-blue-600/20 hover:bg-blue-700 transition-all"
             >
               <PhoneIcon className="w-4 h-4" />
-              WhatsApp: +595 985 478760
+              WhatsApp: +595 994 884 319
             </a>
-            <div className="text-white/30 font-bold uppercase tracking-widest text-[11px] sm:text-xs">
-              & +595 983 338326
-            </div>
           </div>
 
           <button

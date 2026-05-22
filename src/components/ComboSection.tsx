@@ -97,7 +97,7 @@ export default function ComboSection() {
 
                 <div className="w-full flex flex-col gap-4">
                   <a
-                    href="https://wa.me/595985478760?text=Hola!%20Me%20interesa%20el%20combo%20de%20servicios%20digitales%20que%20ofrecen."
+                    href="https://wa.me/595994884319?text=Hola!%20Me%20interesa%20el%20combo%20de%20servicios%20digitales%20que%20ofrecen."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group/btn relative bg-white text-black font-black uppercase tracking-widest text-xs px-12 py-6 rounded-2xl shadow-2xl hover:scale-[1.03] transition-all flex items-center justify-center gap-3 overflow-hidden"
@@ -109,12 +109,12 @@ export default function ComboSection() {
 
                   <div className="grid grid-cols-1 gap-3 mt-2">
                      <a
-                        href="https://wa.me/595985478760"
+                        href="https://wa.me/595994884319"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2 py-4 rounded-xl border border-white/10 bg-white/5 text-white/50 text-[12px] sm:text-xs font-black uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all"
                      >
-                        <MessageSquare className="w-3 h-3" /> +595 985 478 760
+                        <MessageSquare className="w-3 h-3" /> +595 994 884 319
                      </a>
                   </div>
                 </div>

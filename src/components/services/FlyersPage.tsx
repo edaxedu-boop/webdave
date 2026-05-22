@@ -224,7 +224,7 @@ export default function FlyersPage({ onClose }: FlyersPageProps) {
               </div>
 
               <a
-                href="https://wa.me/595985478760"
+                href="https://wa.me/595994884319"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`mt-4 w-full py-4 rounded-xl font-black uppercase tracking-widest text-[10px] text-center transition-all ${
@@ -263,17 +263,14 @@ export default function FlyersPage({ onClose }: FlyersPageProps) {
 
            <div className="flex flex-col sm:flex-row items-center gap-4">
             <a
-              href="https://wa.me/595985478760"
+              href="https://wa.me/595994884319"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-600 flex items-center gap-3 text-white font-black uppercase tracking-widest text-sm px-12 py-6 rounded-full shadow-xl shadow-blue-600/20 hover:bg-blue-700 transition-all"
             >
               <Megaphone className="w-4 h-4" />
-              WhatsApp: +595 985 478760
+              WhatsApp: +595 994 884 319
             </a>
-            <div className="text-white/30 font-bold uppercase tracking-widest text-[11px] sm:text-xs">
-              & +595 983 338326
-            </div>
           </div>
 
           <button

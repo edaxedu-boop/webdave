@@ -152,7 +152,7 @@ export default function ProjectDetailPage({ project, onClose }: ProjectDetailPag
       <section className="py-32 px-5 text-center border-t border-white/5">
          <h2 className="text-white font-black uppercase text-3xl sm:text-5xl tracking-tighter mb-8">¿Te gusta este trabajo?</h2>
          <a 
-           href="https://wa.me/595985478760" 
+           href="https://wa.me/595994884319" 
            target="_blank" 
            rel="noopener noreferrer"
            className="inline-flex items-center gap-4 bg-white text-black px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm hover:scale-105 transition-all shadow-2xl shadow-white/10"

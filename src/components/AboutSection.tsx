@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { Target, Eye, Sparkles, Rocket, Heart, ArrowUpRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Target, Eye, Sparkles, Rocket, Heart, ArrowUpRight, X } from 'lucide-react';
 import FadeIn from './FadeIn';
 
 import { useState, useEffect } from 'react';
@@ -13,8 +13,18 @@ const stats = [
 ];
 
 const founders = [
-  { name: 'David Arzapalo', initial: 'D' },
-  { name: 'Javier Martínez', initial: 'J' },
+  {
+    name: 'David Arzapalo',
+    role: 'Co-Fundador y Director de Tecnología y Producto (CTO / CPO)',
+    image: '/dave (1).jpeg',
+    bio: 'David Arzapalo es el Co-Fundador y Director de Tecnología y Producto de Mundo Digital.\n\nSe encarga de las tendencias del mercado, la infraestructura tecnológica y de asegurar que los servicios mantengan la máxima calidad para el cliente.\n\nApasionado por la innovación, combina su expertise en marketing digital e inteligencia artificial con la gestión estratégica de productos, asegurando soluciones eficientes y de alto impacto. Desea apoyar a niños con leucemia, un sueño personal motivado por la pérdida de su abuela a causa de esta enfermedad.\n\nEn su tiempo libre, le gusta escuchar podcasts de liderazgo, inversiones y desarrollo personal, viajar por el mundo. También disfruta de ir al gimnasio y jugar videojuegos de estrategia como DOTA 2. Es un creyente devoto del Dios del cristianismo.'
+  },
+  {
+    name: 'Karina Morinigo',
+    role: 'Directora Financiera y de Operaciones (CFO / COO)',
+    image: '/karina.jpeg',
+    bio: 'Karina es responsable del flujo de caja y la contabilidad de la empresa (Finanzas), así como de la administración de recursos humanos y operaciones internas (Operaciones). Controla la salud financiera de Mundo Digital y asegura que la estructura interna del equipo funcione de manera eficiente. Empresaria y fundadora de JKA Emprendimientos, la empresa madre de Mundo Digital, es una mujer visionaria con enfoque estratégico y liderazgo sólido.\n\nApasionada por servir en el reino de Dios, Karina tuvo su encuentro con Cristo desde muy joven y busca ser un pilar en la construcción de la iglesia donde congrega. Su fe la inspira a liderar con integridad, justicia y compromiso, integrando sus valores cristianos con la gestión empresarial y la excelencia operativa.'
+  }
 ];
 
 function Counter({ value, duration = 2 }: { value: number; duration?: number }) {
@@ -76,15 +86,16 @@ function ContactButton({ href }: ContactButtonProps) {
   return (
     <a
       href={href}
-      className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-orange-500 text-white font-bold uppercase tracking-widest text-[11px] hover:scale-105 transition-all shadow-lg shadow-purple-500/20 self-start"
+      className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-bold uppercase tracking-widest text-[11px] hover:scale-105 transition-all shadow-lg shadow-white/5 self-start"
     >
       Contáctame
-      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+      <ArrowUpRight className="w-4 h-4 text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
     </a>
   );
 }
 
 export default function AboutSection() {
+  const [selectedFounder, setSelectedFounder] = useState<any | null>(null);
   return (
     <section id="sobre-nosotros" className="relative py-24 sm:py-32 md:py-40 bg-[#0C0C0C] overflow-hidden">
       {/* Background Decor */}
@@ -140,16 +151,16 @@ export default function AboutSection() {
               </div>
 
               <p className="text-[#D7E2EA]/70 text-base sm:text-lg leading-relaxed font-light">
-                <span className="text-white font-semibold">Mundo Digital</span> nace del sueño de{' '}
+                <span className="text-white font-semibold">Mundo Digital</span> nace de la visión de{' '}
                 <span className="text-white font-semibold">David Arzapalo</span> y{' '}
-                <span className="text-white font-semibold">Javier Martínez</span>, dos visionarios apasionados por el marketing digital y la fe cristiana.
+                <span className="text-white font-semibold">Karina Morinigo</span>, apasionados por el marketing digital, el liderazgo estratégico y la fe cristiana.
               </p>
 
               <p className="text-[#D7E2EA]/50 text-sm sm:text-base leading-relaxed font-light border-l-2 border-white/10 pl-5">
                 Con una misión que trasciende lo comercial, buscamos apoyar a empresarios para aumentar su visibilidad en internet, mientras creamos un legado de impacto positivo en la sociedad.
               </p>
 
-              <ContactButton href="https://wa.me/595985478760?text=Hola!%20Los%20conoc%C3%AD%20en%20la%20secci%C3%B3n%20'Sobre%20Nosotros'%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20de%20sus%20servicios." />
+              <ContactButton href="https://wa.me/595994884319?text=Hola!%20Los%20conoc%C3%AD%20en%20la%20secci%C3%B3n%20'Sobre%20Nosotros'%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20de%20sus%20servicios." />
             </div>
           </FadeIn>
 
@@ -163,18 +174,31 @@ export default function AboutSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: i * 0.15 }}
-                  whileHover={{ x: 6, transition: { duration: 0.25 } }}
-                  className="flex items-center gap-5 p-6 rounded-2xl border border-white/10 bg-white/[0.03] group cursor-default"
+                  whileHover={{ scale: 1.02, x: 6, transition: { duration: 0.25 } }}
+                  onClick={() => setSelectedFounder(founder)}
+                  className="flex items-center gap-6 p-6 rounded-[32px] border border-white/10 bg-white/[0.03] group cursor-pointer hover:border-white/25 hover:bg-white/[0.06] transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-white/15 to-white/5 border border-white/20 shadow-[0_8px_24px_rgba(255,255,255,0.06)]">
-                    <span className="text-white font-black text-xl leading-none">{founder.initial}</span>
+                  <div className="flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border border-white/10 overflow-hidden bg-white/5 shadow-[0_8px_24px_rgba(0,0,0,0.5)]">
+                    <img 
+                      src={founder.image} 
+                      alt={founder.name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter saturate-[0.8] contrast-[1.05]"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                      }}
+                    />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-white font-bold text-base sm:text-lg tracking-wide truncate">
+                  <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+                    <p className="text-white font-bold text-lg sm:text-xl md:text-2xl tracking-wide group-hover:text-blue-400 transition-colors">
                       {founder.name}
                     </p>
+                    <p className="text-white/40 text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-wider">
+                      {founder.role}
+                    </p>
                   </div>
-                  <Rocket className="w-4 h-4 text-white/15 group-hover:text-white/50 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 text-white/40 group-hover:text-white group-hover:border-white/20 transition-all duration-300">
+                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
                 </motion.div>
               ))}
 
@@ -277,6 +301,64 @@ export default function AboutSection() {
 
       {/* Bottom Separator */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+      {/* ── FOUNDER BIOGRAPHY MODAL ── */}
+      <AnimatePresence>
+        {selectedFounder && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md pointer-events-auto"
+            onClick={() => setSelectedFounder(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.95, y: 20, opacity: 0 }}
+              transition={{ type: 'spring', duration: 0.5 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl bg-[#141414] border border-white/10 rounded-[40px] p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row gap-10 overflow-hidden max-h-[90vh] overflow-y-auto"
+            >
+              {/* Decorative backgrounds */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedFounder(null)}
+                className="absolute top-8 right-8 w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white flex items-center justify-center transition-colors z-10"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Left Column: Image & Title */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6 shrink-0 md:w-72">
+                <div className="w-44 h-44 sm:w-64 sm:h-64 rounded-[36px] border border-white/15 overflow-hidden bg-white/5 shadow-2xl">
+                  <img 
+                    src={selectedFounder.image} 
+                    alt={selectedFounder.name} 
+                    className="w-full h-full object-cover filter saturate-[0.9] contrast-[1.05]"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h4 className="text-white font-black text-2xl sm:text-3xl tracking-tight leading-tight">{selectedFounder.name}</h4>
+                  <span className="text-blue-400 font-bold text-xs uppercase tracking-widest mt-1 leading-snug">{selectedFounder.role}</span>
+                </div>
+              </div>
+
+              {/* Right Column: Bio Content */}
+              <div className="flex-1 flex flex-col gap-6">
+                <span className="text-white/30 uppercase tracking-[0.2em] text-[10px] font-black border-b border-white/5 pb-3">Biografía y Visión</span>
+                <div className="text-white/80 text-sm sm:text-base md:text-lg font-light leading-relaxed flex flex-col gap-6 overflow-y-auto custom-scrollbar pr-4 max-h-[45vh] sm:max-h-[55vh]">
+                  {selectedFounder.bio.split('\n\n').map((paragraph: string, idx: number) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

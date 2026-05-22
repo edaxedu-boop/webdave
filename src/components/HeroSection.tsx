@@ -38,7 +38,7 @@ export default function HeroSection() {
           </FadeIn>
 
           <FadeIn delay={0.5} y={20}>
-            <ContactButton href="https://wa.me/595985478760?text=Hola!%20Me%20gustar%C3%ADa%20empezar%20un%20proyecto%20con%20Mundo%20Digital." />
+            <ContactButton href="https://wa.me/595994884319?text=Hola!%20Me%20gustar%C3%ADa%20empezar%20un%20proyecto%20con%20Mundo%20Digital." />
           </FadeIn>
         </div>
       </div>

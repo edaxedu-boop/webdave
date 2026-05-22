@@ -7,6 +7,7 @@ const navLinks = [
   { name: 'Nuestro Equipo', id: 'sobre-nosotros' },
   { name: 'Servicios', id: 'servicios' },
   { name: 'Proyectos', id: 'proyectos' },
+  { name: 'Obras Sociales', id: 'obras-sociales' },
   { name: 'Contacto', id: 'contacto' },
 ];
 
@@ -27,9 +28,10 @@ const servicesList = [
 
 interface NavbarProps {
   onServiceSelect: (service: string) => void;
+  onSocialWorksSelect: () => void;
 }
 
-export default function Navbar({ onServiceSelect }: NavbarProps) {
+export default function Navbar({ onServiceSelect, onSocialWorksSelect }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
@@ -108,8 +110,15 @@ export default function Navbar({ onServiceSelect }: NavbarProps) {
               return (
                 <div key={link.name} className="relative group">
                   <a
-                    href={`#${id}`}
-                    onClick={() => {
+                    href={id === 'obras-sociales' ? undefined : `#${id}`}
+                    onClick={(e) => {
+                      if (id === 'obras-sociales') {
+                        e.preventDefault();
+                        onSocialWorksSelect();
+                        setIsOpen(false);
+                        setIsDropdownOpen(false);
+                        return;
+                      }
                       if (isServicios) {
                         setIsDropdownOpen(!isDropdownOpen);
                       }
@@ -199,7 +208,14 @@ export default function Navbar({ onServiceSelect }: NavbarProps) {
                       return (
                         <button
                           key={link.name}
-                          onClick={() => isServicios ? setIsDropdownOpen(true) : handleLinkClick(id)}
+                          onClick={() => {
+                            if (id === 'obras-sociales') {
+                              onSocialWorksSelect();
+                              setIsOpen(false);
+                              return;
+                            }
+                            isServicios ? setIsDropdownOpen(true) : handleLinkClick(id);
+                          }}
                           className="w-full text-center py-4 text-xs font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors flex items-center justify-center gap-2"
                         >
                           {link.name}

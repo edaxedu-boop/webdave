@@ -39,10 +39,10 @@ export default function Footer() {
 
           <FadeIn delay={0.2} y={20}>
             <a 
-              href="https://wa.me/595985478760?text=Hola!%20Encontr%C3%A9%20su%20contacto%20en%20el%20pie%20de%20p%C3%A1gina%20del%20sitio%20web."
+              href="https://wa.me/595994884319?text=Hola!%20Encontr%C3%A9%20su%20contacto%20en%20el%20pie%20de%20p%C3%A1gina%20del%20sitio%20web."
               className="group flex items-center gap-3 text-white text-lg sm:text-xl md:text-2xl font-light hover:opacity-70 transition-opacity"
             >
-              +595 985 478 760
+              +595 994 884 319
               <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                 <ArrowUpRight className="w-5 h-5" />
               </div>

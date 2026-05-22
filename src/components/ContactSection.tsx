@@ -14,7 +14,7 @@ export default function ContactSection() {
     const budget = formData.get('budget');
     const message = formData.get('message');
     
-    const whatsappUrl = `https://wa.me/595985478760?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/595994884319?text=${encodeURIComponent(
       `Hola Mundo Digital! 👋\n\nMi nombre es: ${name}\nEmail: ${email}\nPresupuesto: ${budget}\n\nConsulta: ${message}`
     )}`;
     
@@ -57,7 +57,7 @@ export default function ContactSection() {
 
             <div className="flex flex-col gap-8">
               {[
-                { icon: Phone, label: 'Llámanos', value: '+595 985 478 760', href: 'tel:+595985478760' },
+                { icon: Phone, label: 'Llámanos', value: '+595 994 884 319', href: 'tel:+595994884319' },
                 { icon: Mail, label: 'Email', value: 'hola@mundodigital.com.py', href: 'mailto:hola@mundodigital.com.py' },
                 { icon: MapPin, label: 'Ubicación', value: 'San Ignacio, Misiones, Paraguay', href: '#mapa' }
               ].map((item, i) => (
