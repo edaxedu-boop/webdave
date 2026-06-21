@@ -11,9 +11,16 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
   const [player, setPlayer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     let activePlayer: any = null;
+
+    // Safety timeout: if Vimeo events fail to fire (e.g. slow connection),
+    // fade in the iframe after 2.5 seconds anyway.
+    const safetyTimeout = setTimeout(() => {
+      setIsLoaded(true);
+    }, 2500);
 
     const initPlayer = async () => {
       if (!iframeRef.current) return;
@@ -21,6 +28,7 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
         const Vimeo = await getVimeoSDK();
         if (!Vimeo) {
           console.warn('Vimeo Player SDK not loaded, fallback mode active.');
+          setIsLoaded(true);
           return;
         }
         const p = new Vimeo.Player(iframeRef.current);
@@ -28,7 +36,15 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
         activePlayer = p;
 
         // Sync player events
-        p.on('play', () => setIsPlaying(true));
+        p.on('loaded', () => {
+          setIsLoaded(true);
+          clearTimeout(safetyTimeout);
+        });
+        p.on('play', () => {
+          setIsPlaying(true);
+          setIsLoaded(true);
+          clearTimeout(safetyTimeout);
+        });
         p.on('pause', () => setIsPlaying(false));
         p.on('volumechange', async () => {
           const muted = await p.getMuted();
@@ -36,12 +52,14 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
         });
       } catch (err) {
         console.error('Failed to initialize Vimeo Player:', err);
+        setIsLoaded(true);
       }
     };
 
     initPlayer();
 
     return () => {
+      clearTimeout(safetyTimeout);
       if (activePlayer) {
         activePlayer.unload().catch(() => {});
       }
@@ -77,14 +95,31 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
 
   return (
     <div className="relative w-full overflow-hidden rounded-[20px] bg-black border border-white/5 shadow-inner select-none" style={{ paddingBottom: '177.78%' }}>
-      {/* Background loop video */}
+      
+      {/* Loading Skeleton / Placeholder */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-[#0C0C0C] flex flex-col items-center justify-center z-15 transition-opacity duration-500">
+          {/* Custom Pulsing Spinner */}
+          <div className="relative flex items-center justify-center w-14 h-14">
+            <div className="absolute w-full h-full rounded-full border-2 border-blue-500/10 border-t-blue-500 animate-spin" />
+            <div className="w-8 h-8 rounded-full bg-blue-500/10 animate-pulse" />
+          </div>
+          <span className="mt-4 text-[#D7E2EA]/30 text-[10px] font-black uppercase tracking-[0.2em] animate-pulse">
+            Cargando Video...
+          </span>
+        </div>
+      )}
+
+      {/* Background loop video with smooth fade-in once loaded */}
       <iframe
         ref={iframeRef}
         src={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479&background=1&muted=1&autoplay=1&loop=1`}
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
-        className="absolute inset-0 w-full h-full pointer-events-none scale-[1.02]"
+        className={`absolute inset-0 w-full h-full pointer-events-none scale-[1.02] transition-opacity duration-700 ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
         title={title}
       />
       
