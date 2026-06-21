@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   X, ArrowLeft, Target, Zap, Clock,
-  Eye, Users, Palette, Sparkles, Megaphone, Briefcase, Mic2
+  Eye, Palette, Megaphone
 } from 'lucide-react';
 
 import VimeoPlayer from '../VimeoPlayer';
@@ -13,22 +13,22 @@ interface FlyersPageProps {
 
 const categories = [
   {
-    icon: Briefcase,
+    iconUrl: 'https://res.cloudinary.com/dl1pgzshh/image/upload/v1782016766/Para_Empresas.png',
     title: 'Para Empresas',
     desc: 'Promociona tus productos, servicios y ofertas con diseños profesionales que impulsan tus ventas.'
   },
   {
-    icon: Users,
+    iconUrl: 'https://res.cloudinary.com/dl1pgzshh/image/upload/v1782016766/Para_Politicos.png',
     title: 'Para Políticos',
     desc: 'Comunica tus propuestas y conecta con la ciudadanía con flyers que generan confianza y apoyo.'
   },
   {
-    icon: Sparkles,
+    iconUrl: 'https://res.cloudinary.com/dl1pgzshh/image/upload/v1782016766/Para_Servicios.png',
     title: 'Servicios Profesionales',
     desc: 'Destaca tu experiencia y atrae más clientes con diseños claros, elegantes y persuasivos.'
   },
   {
-    icon: Mic2,
+    iconUrl: 'https://res.cloudinary.com/dl1pgzshh/image/upload/v1782016766/Para_Eventos.png',
     title: 'Eventos y Shows',
     desc: 'Promociona tus eventos, conciertos y shows con diseños llamativos que llenan el lugar.'
   }
@@ -142,33 +142,35 @@ export default function FlyersPage({ onClose }: FlyersPageProps) {
       {/* ══════════════════════════════════════
           SECTION 2 — MAIN TITLE & INTRO
       ══════════════════════════════════════ */}
-      <section className="px-5 sm:px-8 md:px-12 py-20 flex flex-col items-center gap-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col gap-4 max-w-3xl"
-        >
-          <h2 className="text-white font-black uppercase leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 7vw, 80px)' }}>
-            Flyers<br /><span className="text-blue-500">Publicitarios</span>
-          </h2>
-          <p className="text-[#D7E2EA]/60 text-base sm:text-lg font-light leading-relaxed">
-            Diseñamos flyers que informan, convencen y dejan tu marca en la mente de tu público.<br />
-            Conectamos, convencemos y vendemos.
-          </p>
-        </motion.div>
+      <section className="px-5 sm:px-8 md:px-12 py-20 bg-transparent">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-4 max-w-2xl text-center lg:text-left items-center lg:items-start"
+          >
+            <h2 className="text-white font-black uppercase leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 7vw, 80px)' }}>
+              Flyers<br /><span className="text-blue-500">Publicitarios</span>
+            </h2>
+            <p className="text-[#D7E2EA]/60 text-base sm:text-lg font-light leading-relaxed">
+              Diseñamos flyers que informan, convencen y dejan tu marca en la mente de tu público.<br />
+              Conectamos, convencemos y vendemos.
+            </p>
+          </motion.div>
 
-        {/* Video Showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="w-full max-w-sm mx-auto mt-12"
-        >
-          <div className="p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
-            <VimeoPlayer videoId="1203135774" title="1er Video - MD v2" />
-          </div>
-        </motion.div>
+          {/* Video Showcase */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="w-full max-w-[280px] sm:max-w-[320px] flex-shrink-0"
+          >
+            <div className="p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
+              <VimeoPlayer videoId="1203135774" title="1er Video - MD v2" />
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════
@@ -185,8 +187,8 @@ export default function FlyersPage({ onClose }: FlyersPageProps) {
               transition={{ delay: i * 0.1 }}
               className="flex flex-col gap-4 p-8 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] transition-colors"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
-                <c.icon className="w-6 h-6 text-blue-500" />
+              <div className="w-24 h-24 rounded-2xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20 overflow-hidden">
+                <img src={c.iconUrl} className="w-20 h-20 object-contain" alt={c.title} />
               </div>
               <h3 className="text-white font-bold uppercase text-sm tracking-wide">{c.title}</h3>
               <p className="text-white/50 text-sm font-light leading-relaxed">{c.desc}</p>

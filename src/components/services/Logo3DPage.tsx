@@ -150,33 +150,35 @@ export default function Logo3DPage({ onClose }: Logo3DPageProps) {
       {/* ══════════════════════════════════════
           SECTION 2 — MAIN TITLE & INTRO
       ══════════════════════════════════════ */}
-      <section className="px-5 sm:px-8 md:px-12 py-20 flex flex-col items-center gap-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col gap-4 max-w-3xl"
-        >
-          <h2 className="text-white font-black uppercase leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 7vw, 80px)' }}>
-            Diseño de<br /><span className="text-blue-500">Logotipos 3D</span>
-          </h2>
-          <p className="text-[#D7E2EA]/60 text-base sm:text-lg font-light leading-relaxed">
-            Diseñamos logos que transforman marcas y las hacen inolvidables.<br />
-            Creamos logotipos en 3D únicos que transmiten profesionalismo y destacan tu marca.
-          </p>
-        </motion.div>
+      <section className="px-5 sm:px-8 md:px-12 py-20 bg-transparent">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-4 max-w-2xl text-center lg:text-left items-center lg:items-start"
+          >
+            <h2 className="text-white font-black uppercase leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 7vw, 80px)' }}>
+              Diseño de<br /><span className="text-blue-500">Logotipos 3D</span>
+            </h2>
+            <p className="text-[#D7E2EA]/60 text-base sm:text-lg font-light leading-relaxed">
+              Diseñamos logos que transforman marcas y las hacen inolvidables.<br />
+              Creamos logotipos en 3D únicos que transmiten profesionalismo y destacan tu marca.
+            </p>
+          </motion.div>
 
-        {/* Video Showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="w-full max-w-sm mx-auto mt-12"
-        >
-          <div className="p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
-            <VimeoPlayer videoId="1203135770" title="2do Video - MD" />
-          </div>
-        </motion.div>
+          {/* Video Showcase */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="w-full max-w-[280px] sm:max-w-[320px] flex-shrink-0"
+          >
+            <div className="p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
+              <VimeoPlayer videoId="1203135770" title="2do Video - MD" />
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════

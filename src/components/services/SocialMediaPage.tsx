@@ -140,44 +140,46 @@ export default function SocialMediaPage({ onClose }: SocialMediaPageProps) {
       {/* ══════════════════════════════════════
           SECTION 2 — MAIN TITLE & INTRO
       ══════════════════════════════════════ */}
-      <section className="px-5 sm:px-8 md:px-12 py-20 flex flex-col items-center gap-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col gap-4 max-w-3xl"
-        >
-          <h2 className="text-white font-black uppercase leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 7vw, 80px)' }}>
-            Gestión de<br /><span className="text-blue-500">Redes Sociales</span>
-          </h2>
-          <p className="text-[#D7E2EA]/60 text-base sm:text-lg font-light leading-relaxed">
-            Nos encargamos de tus redes para que tú te enfoques en lo que mejor sabes hacer: hacer crecer tu negocio.<br />
-            Hacemos crecer tus redes, tu comunidad y tu negocio.
-          </p>
-          <div className="flex justify-center items-center gap-6 mt-4">
-             <div className="flex flex-col items-center gap-1">
-                <span className="text-white font-black text-xs uppercase tracking-widest">TikTok</span>
-             </div>
-             <div className="flex flex-col items-center gap-1">
-                <span className="text-white font-black text-xs uppercase tracking-widest">Facebook</span>
-             </div>
-             <div className="flex flex-col items-center gap-1">
-                <span className="text-white font-black text-xs uppercase tracking-widest">Instagram</span>
-             </div>
-          </div>
-        </motion.div>
+      <section className="px-5 sm:px-8 md:px-12 py-20 bg-transparent">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-4 max-w-2xl text-center lg:text-left items-center lg:items-start"
+          >
+            <h2 className="text-white font-black uppercase leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 7vw, 80px)' }}>
+              Gestión de<br /><span className="text-blue-500">Redes Sociales</span>
+            </h2>
+            <p className="text-[#D7E2EA]/60 text-base sm:text-lg font-light leading-relaxed">
+              Nos encargamos de tus redes para que tú te enfoques en lo que mejor sabes hacer: hacer crecer tu negocio.<br />
+              Hacemos crecer tus redes, tu comunidad y tu negocio.
+            </p>
+            <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 mt-4">
+               <div className="flex flex-col items-center gap-1">
+                  <span className="text-white font-black text-xs uppercase tracking-widest">TikTok</span>
+               </div>
+               <div className="flex flex-col items-center gap-1">
+                  <span className="text-white font-black text-xs uppercase tracking-widest">Facebook</span>
+               </div>
+               <div className="flex flex-col items-center gap-1">
+                  <span className="text-white font-black text-xs uppercase tracking-widest">Instagram</span>
+               </div>
+            </div>
+          </motion.div>
 
-        {/* Video Showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="w-full max-w-sm mx-auto mt-12"
-        >
-          <div className="p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
-            <VimeoPlayer videoId="1203135728" title="6to Video - MD" />
-          </div>
-        </motion.div>
+          {/* Video Showcase */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="w-full max-w-[280px] sm:max-w-[320px] flex-shrink-0"
+          >
+            <div className="p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
+              <VimeoPlayer videoId="1203135728" title="6to Video - MD" />
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════
