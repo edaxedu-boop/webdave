@@ -11,8 +11,6 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
   const [player, setPlayer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const hasInteractedRef = useRef(false);
 
   useEffect(() => {
     let activePlayer: any = null;
@@ -36,18 +34,6 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
           const muted = await p.getMuted();
           setIsMuted(muted);
         });
-
-        // If user already clicked the play button before the SDK/Player was ready,
-        // trigger the play and unmute now.
-        if (hasInteractedRef.current) {
-          try {
-            await p.setMuted(false);
-            await p.setVolume(1);
-            await p.play();
-          } catch (err) {
-            console.error('Failed to auto-play/unmute after late player init:', err);
-          }
-        }
       } catch (err) {
         console.error('Failed to initialize Vimeo Player:', err);
       }
@@ -61,24 +47,6 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
       }
     };
   }, [videoId]);
-
-  const handlePlayUnmute = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    hasInteractedRef.current = true;
-    setHasInteracted(true);
-    setIsPlaying(true);
-    setIsMuted(false);
-
-    if (player) {
-      try {
-        await player.setMuted(false);
-        await player.setVolume(1);
-        await player.play();
-      } catch (err) {
-        console.error('Failed to play/unmute:', err);
-      }
-    }
-  };
 
   const handleTogglePlay = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -109,6 +77,7 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
 
   return (
     <div className="relative w-full overflow-hidden rounded-[20px] bg-black border border-white/5 shadow-inner select-none" style={{ paddingBottom: '177.78%' }}>
+      {/* Background loop video */}
       <iframe
         ref={iframeRef}
         src={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479&background=1&muted=1&autoplay=1&loop=1`}
@@ -119,72 +88,41 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
         title={title}
       />
       
-      {/* Dark overlay with dynamic backdrop blur */}
+      {/* Interactive overlay zone for play/pause and mute/unmute control */}
       <div 
-        className={`absolute inset-0 transition-all duration-700 bg-black/40 ${
-          !hasInteracted ? 'backdrop-blur-[4px]' : 'backdrop-blur-0 pointer-events-none'
-        }`}
-      />
-
-      {/* Striking Play Button Overlay */}
-      {!hasInteracted && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-          <button
-            onClick={handlePlayUnmute}
-            className="group/btn relative flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
-          >
-            {/* Glowing outer rings with distinct pulse animations */}
-            <div className="absolute w-24 h-24 rounded-full bg-blue-500/20 blur-md animate-ping duration-1000" />
-            <div className="absolute w-20 h-20 rounded-full bg-blue-500/30 animate-pulse duration-700" />
-            
-            {/* Central Play Button */}
-            <div className="relative w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 hover:from-blue-500 hover:to-cyan-300 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.6)] border border-white/20 transition-all duration-300">
-              <Play className="w-7 h-7 text-white fill-white ml-1 transition-transform group-hover/btn:scale-110" />
-            </div>
-            
-            {/* Eye-catching badge text */}
-            <span className="mt-5 px-5 py-2.5 rounded-full bg-black/80 border border-blue-500/30 text-blue-400 font-extrabold text-xs uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(59,130,246,0.2)] animate-bounce">
-              Reproducir Video
-            </span>
-          </button>
-        </div>
-      )}
-
-      {/* Interactive Controls Overlay after initial click */}
-      {hasInteracted && (
-        <div 
-          className="absolute inset-0 flex items-center justify-center cursor-pointer group/overlay" 
-          onClick={handleTogglePlay}
-        >
-          {/* Subtle play/pause indicator on hover */}
-          <div className="opacity-0 group-hover/overlay:opacity-100 transition-opacity duration-300 absolute inset-0 bg-black/20 flex items-center justify-center">
-            <div className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-300 hover:scale-105">
-              {isPlaying ? (
-                <div className="flex gap-1 justify-center items-center">
-                  <div className="w-1.5 h-5 bg-white rounded-full animate-pulse" />
-                  <div className="w-1.5 h-5 bg-white rounded-full animate-pulse [animation-delay:0.2s]" />
-                </div>
-              ) : (
-                <Play className="w-5 h-5 text-white fill-white ml-0.5" />
-              )}
-            </div>
-          </div>
-
-          {/* Sound Mute/Unmute Toggle Button */}
-          <button
-            onClick={handleToggleMute}
-            className="absolute bottom-4 right-4 p-2.5 rounded-full bg-black/60 border border-white/10 hover:bg-black/80 hover:border-white/20 transition-all duration-300 z-20 group/mute"
-          >
-            {isMuted ? (
-              <span className="text-[10px] text-red-400 font-extrabold flex items-center gap-1.5 px-1 uppercase tracking-wider">
-                <VolumeX className="w-3.5 h-3.5 animate-pulse" /> Activar Sonido
-              </span>
+        className="absolute inset-0 flex items-center justify-center cursor-pointer group/overlay" 
+        onClick={handleTogglePlay}
+      >
+        {/* Subtle play/pause indicator on hover */}
+        <div className="opacity-0 group-hover/overlay:opacity-100 transition-opacity duration-300 absolute inset-0 bg-black/15 flex items-center justify-center">
+          <div className="w-14 h-14 rounded-full bg-black/45 backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-300 hover:scale-105">
+            {isPlaying ? (
+              <div className="flex gap-1 justify-center items-center">
+                <div className="w-1.5 h-5 bg-white rounded-full animate-pulse" />
+                <div className="w-1.5 h-5 bg-white rounded-full animate-pulse [animation-delay:0.2s]" />
+              </div>
             ) : (
-              <Volume2 className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
+              <Play className="w-5 h-5 text-white fill-white ml-0.5" />
             )}
-          </button>
+          </div>
         </div>
-      )}
+
+        {/* Sound Mute/Unmute Toggle Button */}
+        <button
+          onClick={handleToggleMute}
+          className="absolute bottom-4 right-4 p-2.5 rounded-full bg-black/60 border border-white/10 hover:bg-black/80 hover:border-white/20 transition-all duration-300 z-20 group/mute shadow-lg"
+        >
+          {isMuted ? (
+            <span className="text-[10px] text-red-400 font-extrabold flex items-center gap-1.5 px-1.5 py-0.5 uppercase tracking-wider">
+              <VolumeX className="w-3.5 h-3.5 animate-pulse" /> Activar Sonido
+            </span>
+          ) : (
+            <span className="text-[10px] text-blue-400 font-extrabold flex items-center gap-1.5 px-1.5 py-0.5 uppercase tracking-wider">
+              <Volume2 className="w-3.5 h-3.5 animate-pulse" /> Con Sonido
+            </span>
+          )}
+        </button>
+      </div>
     </div>
   );
 }
