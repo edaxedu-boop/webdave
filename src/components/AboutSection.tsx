@@ -20,6 +20,12 @@ const founders = [
     bio: 'David Arzapalo es el Co-Fundador y Director de Tecnología y Producto de Mundo Digital.\n\nSe encarga de las tendencias del mercado, la infraestructura tecnológica y de asegurar que los servicios mantengan la máxima calidad para el cliente.\n\nApasionado por la innovación, combina su expertise en marketing digital e inteligencia artificial con la gestión estratégica de productos, asegurando soluciones eficientes y de alto impacto.'
   },
   {
+    name: 'Augusto Ferreira',
+    role: 'Co-Fundador & Director Ejecutivo y de Crecimiento (CEO / CGO)',
+    image: 'https://res.cloudinary.com/dl1pgzshh/image/upload/v1782015837/WhatsApp_Image_2026-05-25_at_9.30.01_PM.jpg',
+    bio: 'Augusto Ferreira es el Co-Fundador y Director Ejecutivo y de Crecimiento de Mundo Digital. Él es el estratega comercial y el negociador principal, encargado de las relaciones públicas y cerrar ventas clave que impulsan el crecimiento del negocio.\n\nApasionado por la gestión empresarial, el fútbol y un gran soñador, Augusto tiene un espíritu altruista y tiene el deseo de apoyar a miles de niños necesitados mediante obras de caridad. Tiene una profunda fe en Dios.'
+  },
+  {
     name: 'Karina Morinigo',
     role: 'Directora Financiera y de Operaciones (CFO / COO)',
     image: '/karina.jpeg',
@@ -152,7 +158,8 @@ export default function AboutSection() {
 
               <p className="text-[#D7E2EA]/70 text-base sm:text-lg leading-relaxed font-light">
                 <span className="text-white font-semibold">Mundo Digital</span> nace de la visión de{' '}
-                <span className="text-white font-semibold">David Arzapalo</span> y{' '}
+                <span className="text-white font-semibold">David Arzapalo</span>,{' '}
+                <span className="text-white font-semibold">Augusto Ferreira</span> y{' '}
                 <span className="text-white font-semibold">Karina Morinigo</span>, apasionados por el marketing digital, el liderazgo estratégico y la fe cristiana.
               </p>
 
