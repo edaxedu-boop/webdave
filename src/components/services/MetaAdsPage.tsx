@@ -3,6 +3,7 @@ import {
   X, ArrowLeft, Target, Megaphone, TrendingUp, PieChart, CheckCircle,
   Phone, Eye, Zap, ShieldCheck, BarChart3, Users
 } from 'lucide-react';
+import VimeoPlayer from '../VimeoPlayer';
 
 interface MetaAdsPageProps {
   onClose: () => void;
@@ -146,16 +147,7 @@ export default function MetaAdsPage({ onClose }: MetaAdsPageProps) {
           className="w-full max-w-sm mx-auto mt-12"
         >
           <div className="p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
-            <div className="relative w-full overflow-hidden rounded-[20px] bg-black/40 border border-white/5 shadow-inner" style={{ paddingBottom: '177.78%' }}>
-              <iframe
-                src="https://player.vimeo.com/video/1203135731?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="absolute inset-0 w-full h-full"
-                title="5to Video - MD"
-              />
-            </div>
+            <VimeoPlayer videoId="1203135731" title="5to Video - MD" />
           </div>
         </motion.div>
       </section>
