@@ -169,12 +169,12 @@ export default function LoyaltySoftwarePage({ onClose }: LoyaltySoftwarePageProp
             </div>
             <div className="relative w-full overflow-hidden rounded-[20px] bg-black/40 border border-white/5 shadow-inner" style={{ paddingBottom: '177.78%' }}>
               <iframe
-                src="https://player.vimeo.com/video/1203135770?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                src="https://player.vimeo.com/video/1203135708?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 className="absolute inset-0 w-full h-full"
-                title="2do Video - MD"
+                title="10mo Video - MD"
               />
             </div>
           </div>
