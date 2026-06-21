@@ -95,18 +95,46 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
 
   return (
     <div className="relative w-full overflow-hidden rounded-[20px] bg-black border border-white/5 shadow-inner select-none" style={{ paddingBottom: '177.78%' }}>
-      
+      {/* Dynamic Indeterminate Progress Bar Animation */}
+      <style>{`
+        @keyframes loadingProgress {
+          0% {
+            left: -35%;
+            width: 35%;
+          }
+          50% {
+            left: 30%;
+            width: 40%;
+          }
+          100% {
+            left: 100%;
+            width: 35%;
+          }
+        }
+      `}</style>
+
       {/* Loading Skeleton / Placeholder */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-[#0C0C0C] flex flex-col items-center justify-center z-15 transition-opacity duration-500">
+        <div className="absolute inset-0 bg-[#0C0C0C] flex flex-col items-center justify-center z-15 transition-opacity duration-500 px-6">
           {/* Custom Pulsing Spinner */}
-          <div className="relative flex items-center justify-center w-14 h-14">
-            <div className="absolute w-full h-full rounded-full border-2 border-blue-500/10 border-t-blue-500 animate-spin" />
-            <div className="w-8 h-8 rounded-full bg-blue-500/10 animate-pulse" />
+          <div className="relative flex items-center justify-center w-12 h-12 mb-3">
+            <div className="absolute w-full h-full rounded-full border border-blue-500/20 border-t-blue-500 animate-spin" />
+            <div className="w-6 h-6 rounded-full bg-blue-500/10 animate-ping" />
           </div>
-          <span className="mt-4 text-[#D7E2EA]/30 text-[10px] font-black uppercase tracking-[0.2em] animate-pulse">
-            Cargando Video...
+          
+          <span className="text-[#D7E2EA]/50 text-[10px] font-black uppercase tracking-[0.2em] mb-3">
+            Cargando Video
           </span>
+
+          {/* Indeterminate progress bar */}
+          <div className="w-36 h-1 rounded-full bg-white/5 overflow-hidden border border-white/5 relative">
+            <div 
+              className="absolute top-0 bottom-0 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"
+              style={{
+                animation: 'loadingProgress 1.6s infinite ease-in-out'
+              }}
+            />
+          </div>
         </div>
       )}
 
