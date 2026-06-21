@@ -17,7 +17,7 @@ const founders = [
     name: 'David Arzapalo',
     role: 'Co-Fundador y Director de Tecnología y Producto (CTO / CPO)',
     image: '/dave (1).jpeg',
-    bio: 'David Arzapalo es el Co-Fundador y Director de Tecnología y Producto de Mundo Digital.\n\nSe encarga de las tendencias del mercado, la infraestructura tecnológica y de asegurar que los servicios mantengan la máxima calidad para el cliente.\n\nApasionado por la innovación, combina su expertise en marketing digital e inteligencia artificial con la gestión estratégica de productos, asegurando soluciones eficientes y de alto impacto. Desea apoyar a niños con leucemia, un sueño personal motivado por la pérdida de su abuela a causa de esta enfermedad.\n\nEn su tiempo libre, le gusta escuchar podcasts de liderazgo, inversiones y desarrollo personal, viajar por el mundo. También disfruta de ir al gimnasio y jugar videojuegos de estrategia como DOTA 2. Es un creyente devoto del Dios del cristianismo.'
+    bio: 'David Arzapalo es el Co-Fundador y Director de Tecnología y Producto de Mundo Digital.\n\nSe encarga de las tendencias del mercado, la infraestructura tecnológica y de asegurar que los servicios mantengan la máxima calidad para el cliente.\n\nApasionado por la innovación, combina su expertise en marketing digital e inteligencia artificial con la gestión estratégica de productos, asegurando soluciones eficientes y de alto impacto.'
   },
   {
     name: 'Karina Morinigo',
