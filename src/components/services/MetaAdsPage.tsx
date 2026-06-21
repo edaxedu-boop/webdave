@@ -199,11 +199,11 @@ export default function MetaAdsPage({ onClose }: MetaAdsPageProps) {
               <h3 className="text-white font-black uppercase text-2xl mt-6">Publicidad Digital</h3>
               <div className="flex flex-col gap-1.5 mt-4">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-white font-black text-5xl tracking-tighter">700.000</span>
-                  <span className="text-white/40 text-sm font-bold uppercase">Gs / Mes</span>
+                  <span className="text-white font-black text-5xl tracking-tighter">97</span>
+                  <span className="text-white/40 text-sm font-bold uppercase">USD / Mes</span>
                 </div>
                 <div className="text-white/50 text-xs font-bold uppercase">
-                  o 97 USD / Mes
+                  o 700.000 Gs / Mes
                 </div>
               </div>
               <div className="mt-8 flex flex-col gap-4">
@@ -237,11 +237,11 @@ export default function MetaAdsPage({ onClose }: MetaAdsPageProps) {
               <div className="flex flex-col gap-1.5 mt-4">
                 <div className="flex items-baseline gap-2">
                   <span className="text-white/40 text-xl font-bold uppercase mr-1">Desde</span>
-                  <span className="text-white font-black text-5xl tracking-tighter">250.000</span>
-                  <span className="text-white/40 text-sm font-bold uppercase">Gs / Mes</span>
+                  <span className="text-white font-black text-5xl tracking-tighter">50</span>
+                  <span className="text-white/40 text-sm font-bold uppercase">USD / Mes</span>
                 </div>
                 <div className="text-white/50 text-xs font-bold uppercase">
-                  o desde 50 USD / Mes
+                  o desde 250.000 Gs / Mes
                 </div>
               </div>
               <p className="mt-8 text-white/50 text-sm leading-relaxed font-light">

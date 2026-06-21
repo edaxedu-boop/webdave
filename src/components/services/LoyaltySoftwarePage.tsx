@@ -227,13 +227,13 @@ export default function LoyaltySoftwarePage({ onClose }: LoyaltySoftwarePageProp
             <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent opacity-40 group-hover:opacity-60 transition-opacity" />
             <div className="relative z-10 text-center flex flex-col items-center gap-6 w-full">
               <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-widest">Suscripción Mensual</span>
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-col items-center gap-1.5">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-white font-black text-6xl tracking-tighter">600.000</span>
-                  <span className="text-white/40 text-lg font-bold uppercase">Gs / Mes</span>
+                  <span className="text-white font-black text-6xl tracking-tighter">97</span>
+                  <span className="text-white/40 text-lg font-bold uppercase">USD / Mes</span>
                 </div>
                 <div className="text-white/50 text-sm font-bold uppercase">
-                  o 97 USD / Mes
+                  o 600.000 Gs / Mes
                 </div>
               </div>
               <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 w-full">

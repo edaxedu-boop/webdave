@@ -221,13 +221,13 @@ export default function FlyersPage({ onClose }: FlyersPageProps) {
                 <h3 className="text-white font-black uppercase text-lg">{pack.name}</h3>
               </div>
               
-              <div className="flex flex-col items-center gap-1.5">
+              <div className="flex flex-col items-center gap-1">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-white font-black text-4xl">{pack.priceGs}</span>
-                  <span className="text-white/40 text-xs font-bold uppercase">Gs</span>
+                  <span className="text-white font-black text-4xl">{pack.priceUsd}</span>
+                  <span className="text-white/40 text-xs font-bold uppercase">USD</span>
                 </div>
-                <div className="text-white/50 text-xs font-bold uppercase">
-                  o {pack.priceUsd} USD
+                <div className="text-white/50 text-[11px] font-bold uppercase">
+                  o {pack.priceGs} Gs
                 </div>
               </div>
 

@@ -235,11 +235,11 @@ export default function WebDevelopmentPage({ onClose }: WebDevelopmentPageProps)
               <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-widest">Inversión Única</span>
               <div className="flex flex-col items-center gap-2">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-white font-black text-6xl tracking-tighter">1.500.000</span>
-                  <span className="text-white/40 text-lg font-bold uppercase">Gs</span>
+                  <span className="text-white font-black text-6xl tracking-tighter">197</span>
+                  <span className="text-white/40 text-lg font-bold uppercase">USD</span>
                 </div>
                 <div className="text-white/50 text-sm font-bold uppercase">
-                  o 197 USD
+                  o 1.500.000 Gs
                 </div>
               </div>
               <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 w-full">
@@ -267,11 +267,11 @@ export default function WebDevelopmentPage({ onClose }: WebDevelopmentPageProps)
                 <h3 className="text-white font-black uppercase text-sm tracking-widest text-blue-500">Mantenimiento</h3>
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-baseline gap-2">
-                      <span className="text-white font-black text-3xl tracking-tighter">200.000</span>
-                      <span className="text-white/40 text-xs font-bold uppercase">Gs / Mes</span>
+                      <span className="text-white font-black text-3xl tracking-tighter">27</span>
+                      <span className="text-white/40 text-xs font-bold uppercase">USD / Mes</span>
                   </div>
                   <div className="text-white/50 text-xs font-bold uppercase">
-                      o 27 USD / Mes
+                      o 200.000 Gs / Mes
                   </div>
                 </div>
              </div>

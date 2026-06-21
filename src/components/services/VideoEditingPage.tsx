@@ -252,21 +252,21 @@ export default function VideoEditingPage({ onClose }: VideoEditingPageProps) {
               <div className="flex flex-col gap-3 relative z-10">
                 <div className="flex flex-col gap-1">
                   <div className="flex items-baseline gap-1">
-                      <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.reelPriceGs}</span>
-                      <span className="text-white/40 text-xs font-bold uppercase">Gs / Reel</span>
+                      <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.reelPriceUsd}</span>
+                      <span className="text-white/40 text-xs font-bold uppercase">USD / Reel</span>
                   </div>
                   <div className="text-white/50 text-[11px] font-bold uppercase">
-                      o {plan.reelPriceUsd} USD / Reel
+                      o {plan.reelPriceGs} Gs / Reel
                   </div>
                 </div>
                 <div className="h-px bg-white/5 w-full my-1" />
                 <div className="flex flex-col gap-1">
                   <div className="flex items-baseline gap-1 opacity-90">
-                      <span className="text-white font-black text-xl tracking-tighter">Pack 12: {plan.packPriceGs}</span>
-                      <span className="text-white/40 text-[10px] font-bold uppercase">Gs</span>
+                      <span className="text-white font-black text-xl tracking-tighter">Pack 12: {plan.packPriceUsd}</span>
+                      <span className="text-white/40 text-[10px] font-bold uppercase">USD</span>
                   </div>
                   <div className="text-white/40 text-[10px] font-bold uppercase">
-                      o {plan.packPriceUsd} USD / Pack
+                      o {plan.packPriceGs} Gs / Pack
                   </div>
                 </div>
               </div>

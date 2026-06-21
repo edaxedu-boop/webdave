@@ -228,11 +228,11 @@ export default function Logo3DPage({ onClose }: Logo3DPageProps) {
               
               <div className="flex flex-col gap-1 relative z-10">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.priceGs}</span>
-                  <span className="text-white/40 text-sm font-bold uppercase">Gs.</span>
+                  <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.priceUsd}</span>
+                  <span className="text-white/40 text-sm font-bold uppercase">USD</span>
                 </div>
                 <div className="text-white/50 text-xs font-bold uppercase">
-                  o {plan.priceUsd} USD
+                  o {plan.priceGs} Gs.
                 </div>
               </div>
 

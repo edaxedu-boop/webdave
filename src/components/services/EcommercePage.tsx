@@ -245,11 +245,11 @@ export default function EcommercePage({ onClose }: EcommercePageProps) {
                 
                 <div className="flex flex-col gap-1.5 mt-8">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-white font-black text-5xl tracking-tighter">{plan.priceGs}</span>
-                    <span className="text-white/40 text-sm font-bold uppercase">Gs</span>
+                    <span className="text-white font-black text-5xl tracking-tighter">{plan.priceUsd}</span>
+                    <span className="text-white/40 text-sm font-bold uppercase">USD</span>
                   </div>
                   <div className="text-white/50 text-xs font-bold uppercase">
-                    o {plan.priceUsd} USD
+                    o {plan.priceGs} Gs
                   </div>
                 </div>
 
@@ -290,11 +290,11 @@ export default function EcommercePage({ onClose }: EcommercePageProps) {
            </div>
            <div className="flex flex-col items-center sm:items-end gap-1.5">
               <div className="flex items-baseline gap-2">
-                 <span className="text-white font-black text-3xl">500.000</span>
-                 <span className="text-white/40 text-xs font-bold uppercase">Gs / Mes</span>
+                 <span className="text-white font-black text-3xl">67</span>
+                 <span className="text-white/40 text-xs font-bold uppercase">USD / Mes</span>
               </div>
               <div className="text-white/50 text-xs font-bold uppercase">
-                 o 67 USD / Mes
+                 o 500.000 Gs / Mes
               </div>
               <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest italic">Primer mes incluido</p>
            </div>
