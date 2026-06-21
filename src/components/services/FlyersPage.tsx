@@ -47,21 +47,6 @@ const benefits = [
   { icon: Palette, text: '100% Personalizado' }
 ];
 
-const videos = [
-  { id: '01', title: 'Video 1', url: 'https://player.vimeo.com/video/1203135774?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '02', title: 'Video 2', url: 'https://player.vimeo.com/video/1203135770?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '03', title: 'Video 3', url: 'https://player.vimeo.com/video/1203135761?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '04', title: 'Video 4', url: 'https://player.vimeo.com/video/1203135759?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '05', title: 'Video 5', url: 'https://player.vimeo.com/video/1203135731?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '06', title: 'Video 6', url: 'https://player.vimeo.com/video/1203135728?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '07', title: 'Video 7', url: 'https://player.vimeo.com/video/1203135723?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '08', title: 'Video 8', url: 'https://player.vimeo.com/video/1203135722?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '09', title: 'Video 9', url: 'https://player.vimeo.com/video/1203135707?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '10', title: 'Video 10', url: 'https://player.vimeo.com/video/1203135708?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '11', title: 'Video 11', url: 'https://player.vimeo.com/video/1203135706?badge=0&autopause=0&player_id=0&app_id=58479' },
-  { id: '12', title: 'Video 12', url: 'https://player.vimeo.com/video/1203135709?badge=0&autopause=0&player_id=0&app_id=58479' }
-];
-
 const staggerChildren = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
@@ -171,35 +156,33 @@ export default function FlyersPage({ onClose }: FlyersPageProps) {
           </p>
         </motion.div>
 
-        {/* Videos Showcase */}
+        {/* Video Showcase */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12 w-full max-w-7xl mx-auto"
+          className="w-full max-w-sm mx-auto mt-12"
         >
-          {videos.map((video) => (
-            <div key={video.id} className="flex flex-col gap-4 p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
-              <div className="flex items-center justify-between px-1">
-                <span className="font-black text-xl sm:text-2xl text-white/20 group-hover:text-blue-500 transition-colors duration-500">
-                  {video.id}
-                </span>
-                <span className="text-[#D7E2EA]/40 text-[10px] font-black uppercase tracking-[0.2em]">
-                  {video.title}
-                </span>
-              </div>
-              <div className="relative w-full overflow-hidden rounded-[20px] bg-black/40 border border-white/5 shadow-inner" style={{ paddingBottom: '177.78%' }}>
-                <iframe
-                  src={video.url}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  className="absolute inset-0 w-full h-full"
-                  title={video.title}
-                />
-              </div>
+          <div className="flex flex-col gap-4 p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
+            <div className="flex items-center justify-between px-1">
+              <span className="font-black text-xl sm:text-2xl text-white/20 group-hover:text-blue-500 transition-colors duration-500">
+                01
+              </span>
+              <span className="text-[#D7E2EA]/40 text-[10px] font-black uppercase tracking-[0.2em]">
+                Video Demostrativo
+              </span>
             </div>
-          ))}
+            <div className="relative w-full overflow-hidden rounded-[20px] bg-black/40 border border-white/5 shadow-inner" style={{ paddingBottom: '177.78%' }}>
+              <iframe
+                src="https://player.vimeo.com/video/1203135774?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="absolute inset-0 w-full h-full"
+                title="1er Video - MD v2"
+              />
+            </div>
+          </div>
         </motion.div>
       </section>
 

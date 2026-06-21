@@ -166,26 +166,33 @@ export default function SocialMediaPage({ onClose }: SocialMediaPageProps) {
           </div>
         </motion.div>
 
-        {/* Flyers Showcase */}
+        {/* Video Showcase */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 w-full max-w-5xl mx-auto"
+          className="w-full max-w-sm mx-auto mt-12"
         >
-          {[
-            '/flayers/gestion de redes sociales 1.jpeg',
-            '/flayers/gestion de redes sociales 2.jpeg'
-          ].map((img, i) => (
-            <div key={i} className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02] group">
-              <img 
-                src={img} 
-                alt={`Social Media ${i + 1}`} 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="flex flex-col gap-4 p-4 rounded-[28px] border border-white/10 bg-white/[0.02] group hover:border-blue-500/30 transition-all duration-500">
+            <div className="flex items-center justify-between px-1">
+              <span className="font-black text-xl sm:text-2xl text-white/20 group-hover:text-blue-500 transition-colors duration-500">
+                06
+              </span>
+              <span className="text-[#D7E2EA]/40 text-[10px] font-black uppercase tracking-[0.2em]">
+                Video Demostrativo
+              </span>
             </div>
-          ))}
+            <div className="relative w-full overflow-hidden rounded-[20px] bg-black/40 border border-white/5 shadow-inner" style={{ paddingBottom: '177.78%' }}>
+              <iframe
+                src="https://player.vimeo.com/video/1203135728?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="absolute inset-0 w-full h-full"
+                title="6to Video - MD"
+              />
+            </div>
+          </div>
         </motion.div>
       </section>
 
