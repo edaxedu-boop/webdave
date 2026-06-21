@@ -35,10 +35,10 @@ const categories = [
 ];
 
 const packs = [
-  { name: '1 Flyer', price: '30.000', label: 'Individual' },
-  { name: 'Pack 5 Flyers', price: '120.000', label: 'Popular', highlight: true },
-  { name: 'Pack 10 Flyers', price: '270.000', label: 'Empresarial' },
-  { name: 'Pack 25 Flyers', price: '500.000', label: 'Corporativo' }
+  { name: '1 Flyer', priceGs: '30.000', priceUsd: '4', label: 'Individual' },
+  { name: 'Pack 5 Flyers', priceGs: '120.000', priceUsd: '19', label: 'Popular', highlight: true },
+  { name: 'Pack 10 Flyers', priceGs: '270.000', priceUsd: '29', label: 'Empresarial' },
+  { name: 'Pack 25 Flyers', priceGs: '500.000', priceUsd: '59', label: 'Corporativo' }
 ];
 
 const benefits = [
@@ -221,9 +221,14 @@ export default function FlyersPage({ onClose }: FlyersPageProps) {
                 <h3 className="text-white font-black uppercase text-lg">{pack.name}</h3>
               </div>
               
-              <div className="flex items-baseline gap-1">
-                <span className="text-white font-black text-4xl">{pack.price}</span>
-                <span className="text-white/40 text-xs font-bold uppercase">Gs</span>
+              <div className="flex flex-col items-center gap-1.5">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-white font-black text-4xl">{pack.priceGs}</span>
+                  <span className="text-white/40 text-xs font-bold uppercase">Gs</span>
+                </div>
+                <div className="text-white/50 text-xs font-bold uppercase">
+                  o {pack.priceUsd} USD
+                </div>
               </div>
 
               <a

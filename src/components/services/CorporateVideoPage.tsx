@@ -228,10 +228,13 @@ export default function CorporateVideoPage({ onClose }: CorporateVideoPageProps)
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-40 group-hover:opacity-60 transition-opacity" />
             <div className="relative z-10 text-center flex flex-col items-center gap-8 w-full">
               <span className="px-6 py-2 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest">Inversión Base</span>
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-col items-center gap-2.5">
                 <div className="flex items-baseline gap-2">
-                   <span className="text-white font-black text-6xl sm:text-7xl tracking-tighter">7.000.000</span>
+                   <span className="text-white font-black text-6xl sm:text-7xl tracking-tighter">5.500.000</span>
                    <span className="text-white/40 text-xl font-bold uppercase tracking-widest">Gs</span>
+                </div>
+                <div className="text-white/50 text-sm font-bold uppercase">
+                   o 870 USD
                 </div>
                 <p className="text-white/20 text-xs font-bold uppercase tracking-[0.2em] mt-2">Producción Corporativa Premium</p>
               </div>

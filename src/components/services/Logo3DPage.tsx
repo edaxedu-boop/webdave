@@ -12,22 +12,25 @@ interface Logo3DPageProps {
 const pricingPlans = [
   {
     title: 'Logo 3D desde 0',
-    price: '80.000',
+    priceGs: '80.000',
+    priceUsd: '12',
     features: ['Diseño 100% Original', 'Incluye 2 versiones a elegir'],
     highlight: false,
     color: 'from-blue-500/10 to-transparent'
   },
   {
     title: 'Convertir tu Logo a 3D',
-    price: '120.000',
+    priceGs: '120.000',
+    priceUsd: '17',
     features: ['Convertimos tu logo actual', '3D Profesional', 'Incluye 2 versiones a elegir'],
     highlight: true,
     color: 'from-red-500/10 to-transparent'
   },
   {
-    title: 'Logo 3D + Slogan',
-    price: '160.000',
-    features: ['Logo 3D Profesional', 'Incluye Slogan', 'Incluye 3 versiones a elegir'],
+    title: 'Logo 3D + Banner',
+    priceGs: '160.000',
+    priceUsd: '24',
+    features: ['Logo 3D Profesional', 'Incluye Banner de Redes', 'Incluye 3 versiones a elegir'],
     highlight: false,
     color: 'from-blue-500/10 to-transparent'
   }
@@ -223,9 +226,14 @@ export default function Logo3DPage({ onClose }: Logo3DPageProps) {
               
               <h3 className="text-white font-black uppercase text-lg sm:text-xl tracking-tight relative z-10">{plan.title}</h3>
               
-              <div className="flex items-baseline gap-1 relative z-10">
-                <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.price}</span>
-                <span className="text-white/40 text-sm font-bold uppercase">Gs.</span>
+              <div className="flex flex-col gap-1 relative z-10">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.priceGs}</span>
+                  <span className="text-white/40 text-sm font-bold uppercase">Gs.</span>
+                </div>
+                <div className="text-white/50 text-xs font-bold uppercase">
+                  o {plan.priceUsd} USD
+                </div>
               </div>
 
               <div className="flex flex-col gap-3 relative z-10">

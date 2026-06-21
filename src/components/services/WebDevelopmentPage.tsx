@@ -233,9 +233,14 @@ export default function WebDevelopmentPage({ onClose }: WebDevelopmentPageProps)
             <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent opacity-40 group-hover:opacity-60 transition-opacity" />
             <div className="relative z-10 text-center flex flex-col items-center gap-6 w-full">
               <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-widest">Inversión Única</span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-white font-black text-6xl tracking-tighter">2.000.000</span>
-                <span className="text-white/40 text-lg font-bold uppercase">Gs</span>
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-white font-black text-6xl tracking-tighter">1.500.000</span>
+                  <span className="text-white/40 text-lg font-bold uppercase">Gs</span>
+                </div>
+                <div className="text-white/50 text-sm font-bold uppercase">
+                  o 197 USD
+                </div>
               </div>
               <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 w-full">
                 <p className="text-white/70 text-[10px] font-black uppercase tracking-[0.2em]">Pago único por el desarrollo de tu página web</p>
@@ -260,9 +265,14 @@ export default function WebDevelopmentPage({ onClose }: WebDevelopmentPageProps)
           >
              <div className="flex flex-col gap-2">
                 <h3 className="text-white font-black uppercase text-sm tracking-widest text-blue-500">Mantenimiento</h3>
-                <div className="flex items-baseline gap-2">
-                    <span className="text-white font-black text-3xl tracking-tighter">500.000</span>
-                    <span className="text-white/40 text-xs font-bold uppercase">Gs / Mes</span>
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-baseline gap-2">
+                      <span className="text-white font-black text-3xl tracking-tighter">200.000</span>
+                      <span className="text-white/40 text-xs font-bold uppercase">Gs / Mes</span>
+                  </div>
+                  <div className="text-white/50 text-xs font-bold uppercase">
+                      o 27 USD / Mes
+                  </div>
                 </div>
              </div>
              <div className="flex flex-col gap-4">

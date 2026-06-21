@@ -37,7 +37,8 @@ const plans = [
     id: 1,
     title: 'Básico',
     subtitle: 'Funciones esenciales',
-    price: '3.000.000',
+    priceGs: '2.000.000',
+    priceUsd: '297',
     features: [
       'Diseño moderno y funcional',
       'Funciones esenciales',
@@ -53,7 +54,8 @@ const plans = [
     id: 2,
     title: 'Avanzado',
     subtitle: 'Funciones personalizadas',
-    price: '5.000.000',
+    priceGs: '3.500.000',
+    priceUsd: '497',
     features: [
       'Todas las funciones básicas',
       'Panel de administración completo',
@@ -239,9 +241,14 @@ export default function MobileAppsPage({ onClose }: MobileAppsPageProps) {
                 <h3 className="text-white font-black uppercase text-2xl mt-6">{plan.title}</h3>
                 <p className="text-white/40 text-xs font-bold uppercase mt-1 tracking-wider">{plan.subtitle}</p>
                 
-                <div className="flex items-baseline gap-2 mt-8">
-                  <span className="text-white font-black text-5xl tracking-tighter">{plan.price}</span>
-                  <span className="text-white/40 text-sm font-bold uppercase">Gs</span>
+                <div className="flex flex-col gap-1.5 mt-8">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-white font-black text-5xl tracking-tighter">{plan.priceGs}</span>
+                    <span className="text-white/40 text-sm font-bold uppercase">Gs</span>
+                  </div>
+                  <div className="text-white/50 text-xs font-bold uppercase">
+                    o {plan.priceUsd} USD
+                  </div>
                 </div>
 
                 <div className="mt-8 flex flex-col gap-4">

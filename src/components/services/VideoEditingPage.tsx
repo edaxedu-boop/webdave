@@ -12,8 +12,10 @@ interface VideoEditingPageProps {
 const pricingPlans = [
   {
     title: 'Edición Básica',
-    reelPrice: '60.000',
-    packPrice: '600.000',
+    reelPriceGs: '40.000',
+    reelPriceUsd: '7',
+    packPriceGs: '350.000',
+    packPriceUsd: '47',
     features: [
       'Cortes y transiciones',
       'Música libre de derechos',
@@ -25,8 +27,10 @@ const pricingPlans = [
   },
   {
     title: 'Edición Pro',
-    reelPrice: '90.000',
-    packPrice: '1.000.000',
+    reelPriceGs: '80.000',
+    reelPriceUsd: '14',
+    packPriceGs: '550.000',
+    packPriceUsd: '97',
     features: [
       'Todo lo de Edición Básica',
       'Efectos y transiciones avanzadas',
@@ -38,9 +42,11 @@ const pricingPlans = [
     color: 'from-red-500/10 to-transparent'
   },
   {
-    title: 'IA 4K Premium',
-    reelPrice: '160.000',
-    packPrice: '1.800.000',
+    title: 'Edición con IA',
+    reelPriceGs: '150.000',
+    reelPriceUsd: '24',
+    packPriceGs: '1.200.000',
+    packPriceUsd: '197',
     features: [
       'Todo lo de Edición Pro',
       'Clips generados con IA 4K',
@@ -243,14 +249,25 @@ export default function VideoEditingPage({ onClose }: VideoEditingPageProps) {
               
               <h3 className="text-white font-black uppercase text-lg sm:text-xl tracking-tight relative z-10">{plan.title}</h3>
               
-              <div className="flex flex-col gap-1 relative z-10">
-                <div className="flex items-baseline gap-1">
-                    <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.reelPrice}</span>
-                    <span className="text-white/40 text-xs font-bold uppercase">Gs / Reel</span>
+              <div className="flex flex-col gap-3 relative z-10">
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-baseline gap-1">
+                      <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.reelPriceGs}</span>
+                      <span className="text-white/40 text-xs font-bold uppercase">Gs / Reel</span>
+                  </div>
+                  <div className="text-white/50 text-[11px] font-bold uppercase">
+                      o {plan.reelPriceUsd} USD / Reel
+                  </div>
                 </div>
-                <div className="flex items-baseline gap-1 opacity-60">
-                    <span className="text-white font-bold text-xl tracking-tighter">Pack 12: {plan.packPrice}</span>
-                    <span className="text-white/40 text-[10px] font-bold uppercase">Gs</span>
+                <div className="h-px bg-white/5 w-full my-1" />
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-baseline gap-1 opacity-90">
+                      <span className="text-white font-black text-xl tracking-tighter">Pack 12: {plan.packPriceGs}</span>
+                      <span className="text-white/40 text-[10px] font-bold uppercase">Gs</span>
+                  </div>
+                  <div className="text-white/40 text-[10px] font-bold uppercase">
+                      o {plan.packPriceUsd} USD / Pack
+                  </div>
                 </div>
               </div>
 

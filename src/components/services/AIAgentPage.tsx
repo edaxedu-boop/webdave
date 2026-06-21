@@ -234,9 +234,14 @@ export default function AIAgentPage({ onClose }: AIAgentPageProps) {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-40 group-hover:opacity-60 transition-opacity" />
             <div className="relative z-10 text-center flex flex-col items-center gap-6 w-full">
               <span className="px-4 py-1.5 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest">Pago Único</span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-white font-black text-6xl tracking-tighter">2.000.000</span>
-                <span className="text-white/40 text-lg font-bold uppercase">Gs</span>
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-white font-black text-6xl tracking-tighter">1.500.000</span>
+                  <span className="text-white/40 text-lg font-bold uppercase">Gs</span>
+                </div>
+                <div className="text-white/50 text-sm font-bold uppercase">
+                  o 247 USD
+                </div>
               </div>
               <div className="flex flex-col gap-2 p-5 rounded-2xl bg-white/[0.03] border border-white/10 w-full">
                 <p className="text-white font-black uppercase text-[10px] tracking-[0.2em]">Sin mensualidades</p>

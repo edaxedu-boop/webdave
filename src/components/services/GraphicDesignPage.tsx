@@ -12,21 +12,24 @@ interface GraphicDesignPageProps {
 const pricingPlans = [
   {
     title: 'Tarjetas de Presentación',
-    price: '50.000',
+    priceGs: '50.000',
+    priceUsd: '7',
     features: ['Diseños profesionales', 'Impresos o digitales'],
     highlight: false,
     color: 'from-blue-500/10 to-transparent'
   },
   {
     title: 'Curriculum Vitae',
-    price: '30.000',
+    priceGs: '50.000',
+    priceUsd: '7',
     features: ['Destaca tu perfil', 'Diseño moderno y profesional'],
     highlight: false,
     color: 'from-blue-500/10 to-transparent'
   },
   {
     title: 'Porta Credencial',
-    price: '40.000',
+    priceGs: '50.000',
+    priceUsd: '7',
     features: ['Personalizado para tu empresa', 'Profesional y resistente'],
     highlight: false,
     color: 'from-blue-500/10 to-transparent'
@@ -36,14 +39,16 @@ const pricingPlans = [
 const socialPacks = [
   {
     title: 'Pack 12 Creativos / Mes',
-    price: '320.000',
+    priceGs: '320.000',
+    priceUsd: '47',
     features: ['Contenido que vende', 'Diseños originales semanales'],
     highlight: true,
     color: 'from-red-500/10 to-transparent'
   },
   {
     title: 'Pack 30 Creativos / Mes',
-    price: '700.000',
+    priceGs: '700.000',
+    priceUsd: '97',
     features: ['Cobertura total del mes', 'Máximo impacto visual'],
     highlight: false,
     color: 'from-blue-500/10 to-transparent'
@@ -238,9 +243,14 @@ export default function GraphicDesignPage({ onClose }: GraphicDesignPageProps) {
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-20 group-hover:opacity-40 transition-opacity`} />
               <h3 className="text-white font-black uppercase text-lg sm:text-xl tracking-tight relative z-10">{plan.title}</h3>
-              <div className="flex items-baseline gap-1 relative z-10">
-                <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.price}</span>
-                <span className="text-white/40 text-sm font-bold uppercase">Gs.</span>
+              <div className="flex flex-col gap-1 relative z-10">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.priceGs}</span>
+                  <span className="text-white/40 text-sm font-bold uppercase">Gs.</span>
+                </div>
+                <div className="text-white/50 text-xs font-bold uppercase">
+                  o {plan.priceUsd} USD
+                </div>
               </div>
               <div className="flex flex-col gap-3 relative z-10">
                 {plan.features.map(feat => (
@@ -280,9 +290,14 @@ export default function GraphicDesignPage({ onClose }: GraphicDesignPageProps) {
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-20 group-hover:opacity-40 transition-opacity`} />
               <h3 className="text-white font-black uppercase text-lg sm:text-xl tracking-tight relative z-10">{plan.title}</h3>
-              <div className="flex items-baseline gap-1 relative z-10">
-                <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.price}</span>
-                <span className="text-white/40 text-sm font-bold uppercase">Gs.</span>
+              <div className="flex flex-col gap-1 relative z-10">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-white font-black text-4xl sm:text-5xl tracking-tighter">{plan.priceGs}</span>
+                  <span className="text-white/40 text-sm font-bold uppercase">Gs.</span>
+                </div>
+                <div className="text-white/50 text-xs font-bold uppercase">
+                  o {plan.priceUsd} USD / Mes
+                </div>
               </div>
               <div className="flex flex-col gap-3 relative z-10">
                 {plan.features.map(feat => (

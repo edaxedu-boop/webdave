@@ -37,7 +37,8 @@ const plans = [
     id: 1,
     title: 'Esencial',
     subtitle: 'Sin vinculación de factura',
-    price: '3.000.000',
+    priceGs: '2.000.000',
+    priceUsd: '297',
     features: [
       'Diseño moderno y responsive',
       'Catálogo ilimitado',
@@ -55,7 +56,8 @@ const plans = [
     id: 2,
     title: 'Avanzado',
     subtitle: 'Con vinculación de factura',
-    price: '5.000.000',
+    priceGs: '3.500.000',
+    priceUsd: '497',
     features: [
       'Todo lo del Plan Esencial',
       'Vinculación con tu sistema',
@@ -241,9 +243,14 @@ export default function EcommercePage({ onClose }: EcommercePageProps) {
                 <h3 className="text-white font-black uppercase text-2xl mt-6">{plan.title}</h3>
                 <p className="text-white/40 text-xs font-bold uppercase mt-1 tracking-wider">{plan.subtitle}</p>
                 
-                <div className="flex items-baseline gap-2 mt-8">
-                  <span className="text-white font-black text-5xl tracking-tighter">{plan.price}</span>
-                  <span className="text-white/40 text-sm font-bold uppercase">Gs</span>
+                <div className="flex flex-col gap-1.5 mt-8">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-white font-black text-5xl tracking-tighter">{plan.priceGs}</span>
+                    <span className="text-white/40 text-sm font-bold uppercase">Gs</span>
+                  </div>
+                  <div className="text-white/50 text-xs font-bold uppercase">
+                    o {plan.priceUsd} USD
+                  </div>
                 </div>
 
                 <div className="mt-8 flex flex-col gap-4">
@@ -281,10 +288,13 @@ export default function EcommercePage({ onClose }: EcommercePageProps) {
               <span className="text-white font-black uppercase text-[10px] tracking-widest text-blue-500">Mantenimiento Mensual</span>
               <p className="text-white/60 text-sm">Soporte técnico, actualizaciones y seguridad continua.</p>
            </div>
-           <div className="flex flex-col items-center sm:items-end gap-1">
+           <div className="flex flex-col items-center sm:items-end gap-1.5">
               <div className="flex items-baseline gap-2">
                  <span className="text-white font-black text-3xl">500.000</span>
                  <span className="text-white/40 text-xs font-bold uppercase">Gs / Mes</span>
+              </div>
+              <div className="text-white/50 text-xs font-bold uppercase">
+                 o 67 USD / Mes
               </div>
               <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest italic">Primer mes incluido</p>
            </div>
