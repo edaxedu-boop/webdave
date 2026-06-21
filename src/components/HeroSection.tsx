@@ -7,7 +7,7 @@ export default function HeroSection() {
       {/* Background GIF */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/hero.gif"
+          src="https://i.imgur.com/g7SdjA4.gif"
           alt="Background animation"
           className="w-full h-full object-cover opacity-60"
         />
