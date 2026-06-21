@@ -12,70 +12,103 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const hasInteractedRef = useRef(false);
 
   useEffect(() => {
     let activePlayer: any = null;
 
     const initPlayer = async () => {
       if (!iframeRef.current) return;
-      const Vimeo = await loadVimeoSDK();
-      const p = new Vimeo.Player(iframeRef.current);
-      setPlayer(p);
-      activePlayer = p;
+      try {
+        const Vimeo = await getVimeoSDK();
+        if (!Vimeo) {
+          console.warn('Vimeo Player SDK not loaded, fallback mode active.');
+          return;
+        }
+        const p = new Vimeo.Player(iframeRef.current);
+        setPlayer(p);
+        activePlayer = p;
 
-      // Sync initial state
-      p.on('play', () => setIsPlaying(true));
-      p.on('pause', () => setIsPlaying(false));
-      p.on('volumechange', async () => {
-        const muted = await p.getMuted();
-        setIsMuted(muted);
-      });
+        // Sync player events
+        p.on('play', () => setIsPlaying(true));
+        p.on('pause', () => setIsPlaying(false));
+        p.on('volumechange', async () => {
+          const muted = await p.getMuted();
+          setIsMuted(muted);
+        });
+
+        // If user already clicked the play button before the SDK/Player was ready,
+        // trigger the play and unmute now.
+        if (hasInteractedRef.current) {
+          try {
+            await p.setMuted(false);
+            await p.setVolume(1);
+            await p.play();
+          } catch (err) {
+            console.error('Failed to auto-play/unmute after late player init:', err);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to initialize Vimeo Player:', err);
+      }
     };
 
     initPlayer();
 
     return () => {
       if (activePlayer) {
-        activePlayer.unload();
+        activePlayer.unload().catch(() => {});
       }
     };
   }, [videoId]);
 
   const handlePlayUnmute = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!player) return;
-    try {
-      await player.setMuted(false);
-      await player.setVolume(1);
-      await player.play();
-      setIsPlaying(true);
-      setIsMuted(false);
-      setHasInteracted(true);
-    } catch (err) {
-      console.error('Failed to play/unmute:', err);
+    hasInteractedRef.current = true;
+    setHasInteracted(true);
+    setIsPlaying(true);
+    setIsMuted(false);
+
+    if (player) {
+      try {
+        await player.setMuted(false);
+        await player.setVolume(1);
+        await player.play();
+      } catch (err) {
+        console.error('Failed to play/unmute:', err);
+      }
     }
   };
 
   const handleTogglePlay = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!player) return;
-    if (isPlaying) {
-      await player.pause();
-    } else {
-      await player.play();
+    try {
+      const paused = await player.getPaused();
+      if (paused) {
+        await player.play();
+      } else {
+        await player.pause();
+      }
+    } catch (err) {
+      console.error('Failed to toggle play/pause:', err);
     }
   };
 
   const handleToggleMute = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!player) return;
-    const muted = !isMuted;
-    await player.setMuted(muted);
-    setIsMuted(muted);
+    try {
+      const muted = !isMuted;
+      await player.setMuted(muted);
+      setIsMuted(muted);
+    } catch (err) {
+      console.error('Failed to toggle mute state:', err);
+    }
   };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[20px] bg-black border border-white/5 shadow-inner" style={{ paddingBottom: '177.78%' }}>
+    <div className="relative w-full overflow-hidden rounded-[20px] bg-black border border-white/5 shadow-inner select-none" style={{ paddingBottom: '177.78%' }}>
       <iframe
         ref={iframeRef}
         src={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479&background=1&muted=1&autoplay=1&loop=1`}
@@ -144,7 +177,7 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
           >
             {isMuted ? (
               <span className="text-[10px] text-red-400 font-extrabold flex items-center gap-1.5 px-1 uppercase tracking-wider">
-                <VolumeX className="w-3.5 h-3.5" /> Activar Sonido
+                <VolumeX className="w-3.5 h-3.5 animate-pulse" /> Activar Sonido
               </span>
             ) : (
               <Volume2 className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
@@ -156,27 +189,23 @@ export default function VimeoPlayer({ videoId, title }: VimeoPlayerProps) {
   );
 }
 
-// Global script loader for Vimeo API
-const loadVimeoSDK = (): Promise<any> => {
+// Global script helper with fallback resolution
+const getVimeoSDK = (): Promise<any> => {
   return new Promise((resolve) => {
     if ((window as any).Vimeo) {
       resolve((window as any).Vimeo);
       return;
     }
-    const existingScript = document.getElementById('vimeo-sdk-script');
-    if (existingScript) {
-      const checkInterval = setInterval(() => {
-        if ((window as any).Vimeo) {
-          clearInterval(checkInterval);
-          resolve((window as any).Vimeo);
-        }
-      }, 50);
-      return;
-    }
-    const script = document.createElement('script');
-    script.id = 'vimeo-sdk-script';
-    script.src = 'https://player.vimeo.com/api/player.js';
-    script.onload = () => resolve((window as any).Vimeo);
-    document.body.appendChild(script);
+    let retries = 0;
+    const interval = setInterval(() => {
+      retries++;
+      if ((window as any).Vimeo) {
+        clearInterval(interval);
+        resolve((window as any).Vimeo);
+      } else if (retries >= 60) { // 3 seconds max wait
+        clearInterval(interval);
+        resolve(null);
+      }
+    }, 50);
   });
 };
