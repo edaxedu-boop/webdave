@@ -13,20 +13,32 @@ export const defaultContent = JSON.parse(
   readFileSync(join(__dirname, 'defaultContent.json'), 'utf-8')
 );
 
+const globalCache = globalThis;
+
 let client;
 let db;
 
 export async function connectDb() {
-  const uri = process.env.MONGODB_URI;
-  if (!uri) {
-    throw new Error('Falta MONGODB_URI en .env');
+  if (db) return db;
+
+  if (globalCache._mongoDb) {
+    db = globalCache._mongoDb;
+    client = globalCache._mongoClient;
+    return db;
   }
 
-  console.log('Conectando a MongoDB Atlas...');
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error('Falta MONGODB_URI en las variables de entorno.');
+  }
+
   client = new MongoClient(uri, { serverSelectionTimeoutMS: 15000 });
   await client.connect();
   db = client.db(DB_NAME);
-  console.log('Conectado a MongoDB Atlas.');
+
+  globalCache._mongoDb = db;
+  globalCache._mongoClient = client;
+
   return db;
 }
 
@@ -38,6 +50,7 @@ export function getDb() {
 }
 
 export async function seedDatabase() {
+  await connectDb();
   const database = getDb();
   const admins = database.collection('admins');
   const socialWorks = database.collection('social_works');
@@ -47,22 +60,13 @@ export async function seedDatabase() {
 
   if ((await admins.countDocuments()) === 0) {
     if (!adminEmail || !adminPassword) {
-      throw new Error('Define ADMIN_EMAIL y ADMIN_PASSWORD en .env para crear el admin inicial.');
+      throw new Error('Define ADMIN_EMAIL y ADMIN_PASSWORD para crear el admin inicial.');
     }
-  }
-
-  if (adminEmail && adminPassword) {
-    const email = adminEmail.toLowerCase();
-    const passwordHash = await bcrypt.hash(adminPassword, 10);
-    await admins.updateOne(
-      { email },
-      {
-        $set: { email, passwordHash, updatedAt: new Date() },
-        $setOnInsert: { createdAt: new Date() },
-      },
-      { upsert: true }
-    );
-    console.log(`Admin listo: ${email}`);
+    await admins.insertOne({
+      email: adminEmail.toLowerCase(),
+      passwordHash: await bcrypt.hash(adminPassword, 10),
+      createdAt: new Date(),
+    });
   }
 
   if (!(await socialWorks.findOne({ _id: CONTENT_ID }))) {
@@ -71,7 +75,6 @@ export async function seedDatabase() {
       content: defaultContent,
       updatedAt: new Date(),
     });
-    console.log('Contenido inicial insertado en MongoDB.');
   }
 }
 
@@ -95,5 +98,9 @@ export async function saveSocialWorksContent(content) {
 export async function closeDb() {
   if (client) {
     await client.close();
+    client = undefined;
+    db = undefined;
+    globalCache._mongoDb = undefined;
+    globalCache._mongoClient = undefined;
   }
 }
