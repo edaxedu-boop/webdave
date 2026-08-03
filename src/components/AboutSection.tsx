@@ -26,10 +26,10 @@ const founders = [
     bio: 'David Arzapalo es el Co-Fundador y Director de Tecnología y Producto de Mundo Digital.\n\nSe encarga de las tendencias del mercado, la infraestructura tecnológica y de asegurar que los servicios mantengan la máxima calidad para el cliente.\n\nApasionado por la innovación, combina su expertise en marketing digital e inteligencia artificial con la gestión estratégica de productos, asegurando soluciones eficientes y de alto impacto.'
   },
   {
-    name: 'Karina Morinigo',
+    name: 'Rocy Galeano',
     role: 'Directora Financiera y de Operaciones (CFO / COO)',
-    image: '/karina.jpeg',
-    bio: 'Karina es responsable del flujo de caja y la contabilidad de la empresa (Finanzas), así como de la administración de recursos humanos y operaciones internas (Operaciones). Controla la salud financiera de Mundo Digital y asegura que la estructura interna del equipo funcione de manera eficiente. Empresaria y fundadora de JKA Emprendimientos, la empresa madre de Mundo Digital, es una mujer visionaria con enfoque estratégico y liderazgo sólido.\n\nApasionada por servir en el reino de Dios, Karina tuvo su encuentro con Cristo desde muy joven y busca ser un pilar en la construcción de la iglesia donde congrega. Su fe la inspira a liderar con integridad, justicia y compromiso, integrando sus valores cristianos con la gestión empresarial y la excelencia operativa.'
+    image: '/rocy.png',
+    bio: 'Rocy es responsable del flujo de caja y la contabilidad de la empresa (Finanzas), así como de la administración de recursos humanos y operaciones internas (Operaciones). Controla la salud financiera de Mundo Digital y asegura que la estructura interna del equipo funcione de manera eficiente. Empresaria y fundadora de JKA Emprendimientos, la empresa madre de Mundo Digital, es una mujer visionaria con enfoque estratégico y liderazgo sólido.\n\nApasionada por servir en el reino de Dios, Rocy tuvo su encuentro con Cristo desde muy joven y busca ser un pilar en la construcción de la iglesia donde congrega. Su fe la inspira a liderar con integridad, justicia y compromiso, integrando sus valores cristianos con la gestión empresarial y la excelencia operativa.'
   }
 ];
 
@@ -160,7 +160,7 @@ export default function AboutSection() {
                 <span className="text-white font-semibold">Mundo Digital</span> nace de la visión de{' '}
                 <span className="text-white font-semibold">Augusto Ferreira</span>,{' '}
                 <span className="text-white font-semibold">David Arzapalo</span> y{' '}
-                <span className="text-white font-semibold">Karina Morinigo</span>, apasionados por el marketing digital, el liderazgo estratégico y la fe cristiana.
+                <span className="text-white font-semibold">Rocy Galeano</span>, apasionados por el marketing digital, el liderazgo estratégico y la fe cristiana.
               </p>
 
               <p className="text-[#D7E2EA]/50 text-sm sm:text-base leading-relaxed font-light border-l-2 border-white/10 pl-5">
