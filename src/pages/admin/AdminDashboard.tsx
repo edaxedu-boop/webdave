@@ -90,6 +90,7 @@ export default function AdminDashboard() {
         onTabChange={setActiveTab}
         onSave={handleSave}
         onReset={handleReset}
+        onLogout={handleLogout}
         saving={saving}
         saved={saved}
       />

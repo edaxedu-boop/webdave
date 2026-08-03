@@ -1,5 +1,5 @@
 import {
-  LayoutDashboard, Sparkles, BarChart3, Heart, Users, Gift, Link2, Save, RotateCcw, CheckCircle,
+  LayoutDashboard, Sparkles, BarChart3, Heart, Users, Gift, Link2, Save, RotateCcw, CheckCircle, LogOut,
 } from 'lucide-react';
 
 export type TabId = 'hero' | 'stats' | 'programs' | 'team' | 'donations' | 'settings';
@@ -18,6 +18,7 @@ interface AdminSidebarProps {
   onTabChange: (tab: TabId) => void;
   onSave: () => void;
   onReset: () => void;
+  onLogout: () => void;
   saving: boolean;
   saved: boolean;
 }
@@ -27,6 +28,7 @@ export default function AdminSidebar({
   onTabChange,
   onSave,
   onReset,
+  onLogout,
   saving,
   saved,
 }: AdminSidebarProps) {
@@ -80,6 +82,13 @@ export default function AdminSidebar({
         >
           <RotateCcw className="w-3.5 h-3.5" />
           Restaurar
+        </button>
+        <button
+          onClick={onLogout}
+          className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-red-500/20 text-red-400/70 hover:text-red-300 hover:bg-red-500/10 text-[10px] font-bold uppercase tracking-widest transition-colors"
+        >
+          <LogOut className="w-3.5 h-3.5" />
+          Cerrar sesión
         </button>
       </div>
     </aside>
